@@ -121,12 +121,55 @@ Timer PWM support </li>
 <li>
 ADC API - to be implemented </li>
 </ul>
-</div></div><!-- contents -->
+<h1><a class="anchor" id="Using"></a>
+the documentation</h1>
+<p>For details regarding particular functionality please refer directly to a specific interface file.</p>
+<h1><a class="anchor" id="Compiling"></a>
+with your own project</h1>
+<p>It is very simple to use this library with your own project. You can customize the <a class="el" href="config_8h.html" title="This file stores all significant compilation configuration flags which decide upon the implementation...">config.h</a> settings, pre-build it and then just simply link your project against the static library. Or you can include it as a compilation target in your Makefile. Below is an example Makefile for a simple project haing only one file: main.c. The following directory structure has been assumed:</p>
+<pre class="fragment">*  .
+*  | -- project
+*  | ---- Makefile
+*  | ---- main.c
+*  | -- pca
+*  | ---- ...
+*
+* </pre><div class="fragment"><div class="line">*</div>
+<div class="line">* TARGET=project_executable</div>
+<div class="line">* SOURCES=main.c </div>
+<div class="line">* </div>
+<div class="line">* DEPS=</div>
+<div class="line">* COBJ=$(SOURCES:.c=.o)</div>
+<div class="line">* PCA_PREFIX=../pca</div>
+<div class="line">* </div>
+<div class="line">* CC=avr-gcc</div>
+<div class="line">* OBJC=avr-objcopy</div>
+<div class="line">* MCU=atmega328p</div>
+<div class="line">* CFLAGS=-I. -I$(PCA_PREFIX)/include/ -Wall -Os -DF_CPU=16000000UL -std=c99</div>
+<div class="line">* LDFLAGS=-lpca -L$(PCA_PREFIX)</div>
+<div class="line">* </div>
+<div class="line">* all: $(TARGET)</div>
+<div class="line">* </div>
+<div class="line">* %.o: %.c $(DEPS)</div>
+<div class="line">*   @echo -e <span class="stringliteral">&quot;\tCC&quot;</span> $&lt;</div>
+<div class="line">*   @$(CC) -mmcu=$(MCU) -c -o $@ $&lt; $(CFLAGS)</div>
+<div class="line">* </div>
+<div class="line">* libpca.a:</div>
+<div class="line">*   @echo -e <span class="stringliteral">&quot;\tBUILDING PURE C ARDUINO LIB&quot;</span></div>
+<div class="line">*   $(MAKE) -C $(PCA_PREFIX)</div>
+<div class="line">* </div>
+<div class="line">* $(TARGET): $(COBJ) libpca.a</div>
+<div class="line">*   @echo -e <span class="stringliteral">&quot;\tLINKING CC&quot;</span> $&lt;</div>
+<div class="line">*   @$(CC) -mmcu=$(MCU) -o $(TARGET) $(COBJ) $(LDFLAGS)</div>
+<div class="line">*   $(OBJC) -O ihex -R .eeprom $(TARGET) $(TARGET).hex</div>
+<div class="line">* </div>
+<div class="line">* </div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Sep 24 2013 14:25:31 for Pure C Arduino Library by
+    <li class="footer">Generated on Tue Sep 24 2013 15:04:39 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

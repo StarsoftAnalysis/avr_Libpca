@@ -2,7 +2,9 @@ var NAVTREE =
 [
   [ "Pure C Arduino Library", "index.html", [
     [ "Introduction & Library overview", "index.html", [
-      [ "Features", "index.html#Features", null ]
+      [ "Features", "index.html#Features", null ],
+      [ "the documentation", "index.html#Using", null ],
+      [ "with your own project", "index.html#Compiling", null ]
     ] ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
@@ -31,7 +33,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"tpwm_8h.html#adbd972c47f31990100ae9cbbe33b6c37"
+"tpwm_8h.html#a95b58033cf633282f1bffbf20fca288c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
