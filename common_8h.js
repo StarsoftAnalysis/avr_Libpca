@@ -22,5 +22,6 @@ var common_8h =
       [ "RET_ERROR_PARAMETER", "common_8h.html#a1180094064324e2c7b1244f33f2323d1a39a95f1408e64a512ebc633d25bdfc24", null ],
       [ "RET_ERROR_RESOURCES", "common_8h.html#a1180094064324e2c7b1244f33f2323d1a7555b57aa82952b06c2d9a75eb79278c", null ]
     ] ],
+    [ "common_abs", "common_8h.html#a178abd07c675d91cb4434c2ae79254a2", null ],
     [ "common_memory_left", "common_8h.html#a89e9fcb5c92229408259eb5a45ce4b05", null ]
 ];

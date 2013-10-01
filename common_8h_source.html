@@ -268,14 +268,24 @@ $(document).ready(function(){initNavTree('common_8h_source.html','');});
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;uint16_t <a class="code" href="common_8c.html#a89e9fcb5c92229408259eb5a45ce4b05">common_memory_left</a>();</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __COMMON_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment"> * @brief calculate the absolute value of the number</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment"> * @param a_value positive/negative signed value</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment"> * @return absolute unsigned value</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;uint32_t <a class="code" href="common_8c.html#a178abd07c675d91cb4434c2ae79254a2">common_abs</a>(int32_t a_value);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __COMMON_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="common_8h_html_a1180094064324e2c7b1244f33f2323d1a4894234446e2d92068943b3d6d3a0bdc"><div class="ttname"><a href="common_8h.html#a1180094064324e2c7b1244f33f2323d1a4894234446e2d92068943b3d6d3a0bdc">RET_OK</a></div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00082">common.h:82</a></div></div>
 <div class="ttc" id="common_8h_html_a1180094064324e2c7b1244f33f2323d1ae8ed27c1aabd77d519426a8ad340d76c"><div class="ttname"><a href="common_8h.html#a1180094064324e2c7b1244f33f2323d1ae8ed27c1aabd77d519426a8ad340d76c">RET_ERROR</a></div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00083">common.h:83</a></div></div>
 <div class="ttc" id="common_8h_html_aa0e0608e5352b3247bcb9c95ec804298"><div class="ttname"><a href="common_8h.html#aa0e0608e5352b3247bcb9c95ec804298">vint64_t</a></div><div class="ttdeci">volatile int64_t vint64_t</div><div class="ttdoc">volatile int64_t </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00070">common.h:70</a></div></div>
 <div class="ttc" id="common_8h_html_a080984095d6ed4f029bd5bb8a0a590cd"><div class="ttname"><a href="common_8h.html#a080984095d6ed4f029bd5bb8a0a590cd">vint8_t</a></div><div class="ttdeci">volatile int8_t vint8_t</div><div class="ttdoc">volatile int8_t </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00040">common.h:40</a></div></div>
 <div class="ttc" id="common_8h_html_a1180094064324e2c7b1244f33f2323d1a7555b57aa82952b06c2d9a75eb79278c"><div class="ttname"><a href="common_8h.html#a1180094064324e2c7b1244f33f2323d1a7555b57aa82952b06c2d9a75eb79278c">RET_ERROR_RESOURCES</a></div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00085">common.h:85</a></div></div>
 <div class="ttc" id="common_8h_html_a6f217e412133ffa5803e5d91d0043976"><div class="ttname"><a href="common_8h.html#a6f217e412133ffa5803e5d91d0043976">vint32_t</a></div><div class="ttdeci">volatile int32_t vint32_t</div><div class="ttdoc">volatile int32_t </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00060">common.h:60</a></div></div>
+<div class="ttc" id="common_8c_html_a178abd07c675d91cb4434c2ae79254a2"><div class="ttname"><a href="common_8c.html#a178abd07c675d91cb4434c2ae79254a2">common_abs</a></div><div class="ttdeci">uint32_t common_abs(int32_t a_value)</div><div class="ttdoc">calculate the absolute value of the number </div><div class="ttdef"><b>Definition:</b> <a href="common_8c_source.html#l00036">common.c:36</a></div></div>
 <div class="ttc" id="common_8h_html_a7ee1720c821bd2a2b26c67afdc8b3549"><div class="ttname"><a href="common_8h.html#a7ee1720c821bd2a2b26c67afdc8b3549">vuint8_t</a></div><div class="ttdeci">volatile uint8_t vuint8_t</div><div class="ttdoc">volatile uint8_t </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00045">common.h:45</a></div></div>
 <div class="ttc" id="common_8h_html_aed7bce6c4235795338347c2bc6c75378"><div class="ttname"><a href="common_8h.html#aed7bce6c4235795338347c2bc6c75378">e_return</a></div><div class="ttdeci">enum _e_return e_return</div><div class="ttdoc">return value type </div></div>
 <div class="ttc" id="common_8h_html_a9f6dcc179d3c49158006865ab81f84f5"><div class="ttname"><a href="common_8h.html#a9f6dcc179d3c49158006865ab81f84f5">vint16_t</a></div><div class="ttdeci">volatile int16_t vint16_t</div><div class="ttdoc">volatile int16_t </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00050">common.h:50</a></div></div>
@@ -291,7 +301,7 @@ $(document).ready(function(){initNavTree('common_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="common_8h.html">common.h</a></li>
-    <li class="footer">Generated on Tue Sep 24 2013 15:04:39 for Pure C Arduino Library by
+    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

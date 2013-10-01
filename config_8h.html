@@ -122,13 +122,13 @@ Macros</h2></td></tr>
 <tr class="memitem:acdd7cffffca7e66b7c2374372659d802"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#acdd7cffffca7e66b7c2374372659d802">SERIAL_IMPLEMENT_RX_INT</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:acdd7cffffca7e66b7c2374372659d802"><td class="mdescLeft">&#160;</td><td class="mdescRight">change to 0 and rebuild if you do not wish to include serial RX interrupt some functionality will be missing.  <a href="#acdd7cffffca7e66b7c2374372659d802">More...</a><br/></td></tr>
 <tr class="separator:acdd7cffffca7e66b7c2374372659d802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0c933421db20a71a75385371d70551a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#af0c933421db20a71a75385371d70551a">SERIAL_IMPLEMENT_TX_INT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:af0c933421db20a71a75385371d70551a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#af0c933421db20a71a75385371d70551a">SERIAL_IMPLEMENT_TX_INT</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:af0c933421db20a71a75385371d70551a"><td class="mdescLeft">&#160;</td><td class="mdescRight">change to 0 and rebuild if you do not with to include serial tx interrupt some functionality will be missing  <a href="#af0c933421db20a71a75385371d70551a">More...</a><br/></td></tr>
 <tr class="separator:af0c933421db20a71a75385371d70551a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fc87f5223d356eba607e81e383bfced"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a5fc87f5223d356eba607e81e383bfced">SERIAL_STDIN_POLL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a5fc87f5223d356eba607e81e383bfced"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 - STDIN data will be received by polling, 0 - interrupts  <a href="#a5fc87f5223d356eba607e81e383bfced">More...</a><br/></td></tr>
 <tr class="separator:a5fc87f5223d356eba607e81e383bfced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a489984c7d7bb9016510e078d0b400881"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a489984c7d7bb9016510e078d0b400881">SERIAL_STDOUT_POLL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a489984c7d7bb9016510e078d0b400881"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a489984c7d7bb9016510e078d0b400881">SERIAL_STDOUT_POLL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a489984c7d7bb9016510e078d0b400881"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 - STDOUT data will be sent by polling, 0 - interrupts  <a href="#a489984c7d7bb9016510e078d0b400881">More...</a><br/></td></tr>
 <tr class="separator:a489984c7d7bb9016510e078d0b400881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95d8cad1efb1bbcaa30d35c6b5244954"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a95d8cad1efb1bbcaa30d35c6b5244954">SERIAL_RX_RING_SIZE</a>&#160;&#160;&#160;32</td></tr>
@@ -191,7 +191,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SERIAL_IMPLEMENT_TX_INT&#160;&#160;&#160;0</td>
+          <td class="memname">#define SERIAL_IMPLEMENT_TX_INT&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,7 +241,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SERIAL_STDOUT_POLL&#160;&#160;&#160;1</td>
+          <td class="memname">#define SERIAL_STDOUT_POLL&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -326,7 +326,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="config_8h.html">config.h</a></li>
-    <li class="footer">Generated on Tue Sep 24 2013 15:04:39 for Pure C Arduino Library by
+    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
