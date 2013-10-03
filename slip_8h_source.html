@@ -192,7 +192,7 @@ $(document).ready(function(){initNavTree('slip_8h_source.html','');});
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * @return number of characters received</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slip_8c.html#a393d81397cb0fdf1520a182fd20142b8">slip_recv</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *a_buff, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> a_buflen);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;uint8_t <a class="code" href="slip_8c.html#af6cb8948b66ca18851a88db2bca707ce">slip_recv</a>(uint8_t *a_buff, uint8_t a_buflen);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">/**</span></div>
@@ -203,7 +203,7 @@ $(document).ready(function(){initNavTree('slip_8h_source.html','');});
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * @return number of bytes sent</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slip_8c.html#a553edfcd91567455fe010d59705949c7">slip_send</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *a_buff, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> a_buflen);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;uint8_t <a class="code" href="slip_8c.html#a25f43dc7a16e8e28003a9693d80f43a0">slip_send</a>(uint8_t *a_buff, uint8_t a_buflen);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">/**</span></div>
@@ -214,7 +214,7 @@ $(document).ready(function(){initNavTree('slip_8h_source.html','');});
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> * @return buffer size with CRC16 (a_datalen +2)</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slip_8c.html#a2e0f711eecbf7087e5d6438fe3cb7a49">slip_append_crc16</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *a_buff, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> a_datalen);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;uint8_t <a class="code" href="slip_8c.html#a3e4322a2569a790af9abe61c880813c5">slip_append_crc16</a>(uint8_t *a_buff, uint8_t a_datalen);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">/**</span></div>
@@ -226,23 +226,23 @@ $(document).ready(function(){initNavTree('slip_8h_source.html','');});
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> * @return crc if the checksum verification went successful or 0 if verification failed</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="slip_8c.html#ac13963a970d92b403b9ed0273c11b471">slip_verify_crc16</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *a_buff, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> a_buflen, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> a_crcpos);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;uint8_t <a class="code" href="slip_8c.html#aa61e0ddc6c1e9a4dc3efe1417649ff5a">slip_verify_crc16</a>(uint8_t *a_buff, uint8_t a_buflen, uint8_t a_crcpos);</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __SLIP_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div><div class="ttdoc">This file stores all significant compilation configuration flags which decide upon the implementation...</div></div>
-<div class="ttc" id="slip_8c_html_a2e0f711eecbf7087e5d6438fe3cb7a49"><div class="ttname"><a href="slip_8c.html#a2e0f711eecbf7087e5d6438fe3cb7a49">slip_append_crc16</a></div><div class="ttdeci">unsigned char slip_append_crc16(unsigned char *a_buff, unsigned char a_datalen)</div><div class="ttdoc">append the CRC16 checksum to the end of the data buffer </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00142">slip.c:142</a></div></div>
-<div class="ttc" id="slip_8c_html_a393d81397cb0fdf1520a182fd20142b8"><div class="ttname"><a href="slip_8c.html#a393d81397cb0fdf1520a182fd20142b8">slip_recv</a></div><div class="ttdeci">unsigned char slip_recv(unsigned char *a_buff, unsigned char a_buflen)</div><div class="ttdoc">receive data using slip data synchronization protocol </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00031">slip.c:31</a></div></div>
-<div class="ttc" id="slip_8c_html_a553edfcd91567455fe010d59705949c7"><div class="ttname"><a href="slip_8c.html#a553edfcd91567455fe010d59705949c7">slip_send</a></div><div class="ttdeci">unsigned char slip_send(unsigned char *a_buff, unsigned char a_buflen)</div><div class="ttdoc">send data using slip protocol </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00080">slip.c:80</a></div></div>
 <div class="ttc" id="serial_8h_html"><div class="ttname"><a href="serial_8h.html">serial.h</a></div><div class="ttdoc">API over UART configured as RS232. Contains all the necessary routines in order to provide basic mean...</div></div>
-<div class="ttc" id="slip_8c_html_ac13963a970d92b403b9ed0273c11b471"><div class="ttname"><a href="slip_8c.html#ac13963a970d92b403b9ed0273c11b471">slip_verify_crc16</a></div><div class="ttdeci">unsigned char slip_verify_crc16(unsigned char *a_buff, unsigned char a_buflen, unsigned char a_crcpos)</div><div class="ttdoc">verify the CRC of the data buffer </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00117">slip.c:117</a></div></div>
+<div class="ttc" id="slip_8c_html_aa61e0ddc6c1e9a4dc3efe1417649ff5a"><div class="ttname"><a href="slip_8c.html#aa61e0ddc6c1e9a4dc3efe1417649ff5a">slip_verify_crc16</a></div><div class="ttdeci">uint8_t slip_verify_crc16(uint8_t *a_buff, uint8_t a_buflen, uint8_t a_crcpos)</div><div class="ttdoc">verify the CRC of the data buffer </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00117">slip.c:117</a></div></div>
+<div class="ttc" id="slip_8c_html_af6cb8948b66ca18851a88db2bca707ce"><div class="ttname"><a href="slip_8c.html#af6cb8948b66ca18851a88db2bca707ce">slip_recv</a></div><div class="ttdeci">uint8_t slip_recv(uint8_t *a_buff, uint8_t a_buflen)</div><div class="ttdoc">receive data using slip data synchronization protocol </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00031">slip.c:31</a></div></div>
+<div class="ttc" id="slip_8c_html_a3e4322a2569a790af9abe61c880813c5"><div class="ttname"><a href="slip_8c.html#a3e4322a2569a790af9abe61c880813c5">slip_append_crc16</a></div><div class="ttdeci">uint8_t slip_append_crc16(uint8_t *a_buff, uint8_t a_datalen)</div><div class="ttdoc">append the CRC16 checksum to the end of the data buffer </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00142">slip.c:142</a></div></div>
+<div class="ttc" id="slip_8c_html_a25f43dc7a16e8e28003a9693d80f43a0"><div class="ttname"><a href="slip_8c.html#a25f43dc7a16e8e28003a9693d80f43a0">slip_send</a></div><div class="ttdeci">uint8_t slip_send(uint8_t *a_buff, uint8_t a_buflen)</div><div class="ttdoc">send data using slip protocol </div><div class="ttdef"><b>Definition:</b> <a href="slip_8c_source.html#l00080">slip.c:80</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="slip_8h.html">slip.h</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

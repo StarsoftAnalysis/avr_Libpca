@@ -127,7 +127,8 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:acf4ece72464f7f9438b6d230fe76780f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780f">_e_tdelay_timer</a> { <a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>
+<tr class="memitem:acf4ece72464f7f9438b6d230fe76780f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780f">_e_tdelay_timer</a> { <a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a>, 
+<a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>
  }</td></tr>
 <tr class="memdesc:acf4ece72464f7f9438b6d230fe76780f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Since we do not have to use all timers for delays, there is no need to implement and declare interrupts and data structures for every timer. That's why there is a need for tdelay specific denomination.  <a href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780f">More...</a><br/></td></tr>
 <tr class="separator:acf4ece72464f7f9438b6d230fe76780f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +190,9 @@ Functions</h2></td></tr>
 <p>Since we do not have to use all timers for delays, there is no need to implement and declare interrupts and data structures for every timer. That's why there is a need for tdelay specific denomination. </p>
 <p>Once can imagine a situation in which only implementation of interrupt for timer 1 has been enabled. This means that the subscript in the actual array holding the data for timer delays, for timer 1 will be equal to 0, which stands in contradiction to E_TIMER1 definition. That is why this special denomination has been introduce. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979"></a>E_TDELAY_TIMER_LAST</em>&nbsp;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f"></a>E_TDELAY_TIMER0</em>&nbsp;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979"></a>E_TDELAY_TIMER_LAST</em>&nbsp;</td><td class="fielddoc">
 </td></tr>
 </table>
 
@@ -418,7 +421,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="tdelay__common_8h.html">tdelay_common.h</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

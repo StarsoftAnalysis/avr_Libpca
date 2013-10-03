@@ -147,11 +147,11 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// how many cycles the delay/tone generation should last</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">volatile</span> uint32_t duration;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="tdelay__common_8c.html#ab0271216f2e368e7c08c196975719616">   42</a></span>&#160;    <span class="keyword">volatile</span> uint32_t <a class="code" href="tdelay__common_8c.html#ab0271216f2e368e7c08c196975719616">duration</a>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// do we need to reset the CMPA pin ? (True if the timer used as a Beeper)</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">volatile</span> uint8_t reset_cmpa_pin;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} g_tc[<a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>];</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="tdelay__common_8c.html#a4373482b40aa509262c98ed6100c3f52">   45</a></span>&#160;    <span class="keyword">volatile</span> uint8_t <a class="code" href="tdelay__common_8c.html#a4373482b40aa509262c98ed6100c3f52">reset_cmpa_pin</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[<a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>];</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/**</span></div>
@@ -160,12 +160,12 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * A common routine is used for all 3 timers and corresponding ISR, this structure is declared</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> *  to help pass the parameters to it</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">struct </span>regs {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">volatile</span> <a class="code" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> timer;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">volatile</span> uint8_t *timsk;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">volatile</span> uint8_t *tccrb;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">volatile</span> uint8_t *port;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">volatile</span> uint8_t pin;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structregs.html">   55</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structregs.html">regs</a> {</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">   56</a></span>&#160;    <span class="keyword">volatile</span> <a class="code" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> <a class="code" href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">timer</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structregs.html#a4dc9cf25d2e650fea314cf53a4e359d5">   57</a></span>&#160;    <span class="keyword">volatile</span> uint8_t *<a class="code" href="structregs.html#a4dc9cf25d2e650fea314cf53a4e359d5">timsk</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structregs.html#a6171331353039e6113e26a3b7b3a0dde">   58</a></span>&#160;    <span class="keyword">volatile</span> uint8_t *<a class="code" href="structregs.html#a6171331353039e6113e26a3b7b3a0dde">tccrb</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structregs.html#adfcfd7f304a337776b36f479221f197c">   59</a></span>&#160;    <span class="keyword">volatile</span> uint8_t *<a class="code" href="structregs.html#adfcfd7f304a337776b36f479221f197c">port</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structregs.html#a2b59f622fb6e98624205063488d022ab">   60</a></span>&#160;    <span class="keyword">volatile</span> uint8_t <a class="code" href="structregs.html#a2b59f622fb6e98624205063488d022ab">pin</a>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/* ================================================================================ */</span></div>
@@ -175,19 +175,19 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> * @param sregs timer specific register &amp; parameters structure</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> _isr_tdelay_handler(<span class="keyword">volatile</span> <span class="keyword">struct</span> regs *sregs) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">   70</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a>(<span class="keyword">volatile</span> <span class="keyword">struct</span> <a class="code" href="structregs.html">regs</a> *sregs) {</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (!g_tc[sregs-&gt;timer].duration) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[sregs-&gt;<a class="code" href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">timer</a>].duration) {</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// MASK the interrupt + disable the clock;      </span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        *(sregs-&gt;timsk) &amp;= ~_BV(1); <span class="comment">// OCIEXA</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        *(sregs-&gt;tccrb) &amp;= 0xf8;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        *(sregs-&gt;<a class="code" href="structregs.html#a4dc9cf25d2e650fea314cf53a4e359d5">timsk</a>) &amp;= ~_BV(1); <span class="comment">// OCIEXA</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        *(sregs-&gt;<a class="code" href="structregs.html#a6171331353039e6113e26a3b7b3a0dde">tccrb</a>) &amp;= 0xf8;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// inverted logic if reset_cmpa_pin == 0, the pin will be zeroed</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (!g_tc[sregs-&gt;timer].reset_cmpa_pin)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            *(sregs-&gt;port) &amp;= ~_BV(sregs-&gt;pin);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[sregs-&gt;<a class="code" href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">timer</a>].reset_cmpa_pin)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            *(sregs-&gt;<a class="code" href="structregs.html#adfcfd7f304a337776b36f479221f197c">port</a>) &amp;= ~_BV(sregs-&gt;<a class="code" href="structregs.html#a2b59f622fb6e98624205063488d022ab">pin</a>);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        g_tc[sregs-&gt;timer].duration--;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[sregs-&gt;<a class="code" href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">timer</a>].duration--;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span></div>
@@ -203,7 +203,7 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * @return 1 - if the timer hasn&#39;t expired and we should block, 0 otherwise</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">static</span> uint8_t __tdc_block(<a class="code" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> a_timer, <span class="keyword">volatile</span> uint8_t *timsk, uint8_t map) { </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">   98</a></span>&#160;<span class="keyword">static</span> uint8_t <a class="code" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a>(<a class="code" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> a_timer, <span class="keyword">volatile</span> uint8_t *timsk, uint8_t map) { </div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (bit_is_clear((*timsk), map)) {              </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="tdelay__common_8c.html#a01de17a1ebc340d92f6f9714a61f9733">_tdc_set_duration</a>(a_timer, 0x00);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> 0;</div>
@@ -222,8 +222,8 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> * @param TIMER2_COMPA_vect</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<a class="code" href="serial_8c.html#a7322bb1f11c25882787915cde7d3f273">ISR</a>(TIMER2_COMPA_vect, ISR_NOBLOCK) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span>regs tr2 = { E_TDELAY_TIMER2, &amp;TIMSK2, &amp;TCCR2B, &amp;PORTB, PORTB3 };</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    _isr_tdelay_handler( &amp;tr2 );</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span><a class="code" href="structregs.html">regs</a> tr2 = { E_TDELAY_TIMER2, &amp;TIMSK2, &amp;TCCR2B, &amp;PORTB, PORTB3 };</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a>( &amp;tr2 );</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -236,8 +236,8 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> * @param TIMER1_COMPA_vect</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<a class="code" href="serial_8c.html#a7322bb1f11c25882787915cde7d3f273">ISR</a>(TIMER1_COMPA_vect, ISR_NOBLOCK) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span>regs tr1 = { E_TDELAY_TIMER1, &amp;TIMSK1, &amp;TCCR1B, &amp;PORTB, PORTB1 };</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    _isr_tdelay_handler( &amp;tr1 );</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span><a class="code" href="structregs.html">regs</a> tr1 = { E_TDELAY_TIMER1, &amp;TIMSK1, &amp;TCCR1B, &amp;PORTB, PORTB1 };</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a>( &amp;tr1 );</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -249,9 +249,9 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"> * @param TIMER0_COMPA_vect</span></div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<a class="code" href="serial_8c.html#a7322bb1f11c25882787915cde7d3f273">ISR</a>(TIMER0_COMPA_vect, ISR_NOBLOCK) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span>regs tr0 = { E_TDELAY_TIMER0, &amp;TIMSK0, &amp;TCCR0B, &amp;PORTD, PORTD6 };</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    _isr_tdelay_handler( &amp;tr0 );</div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="tdelay__common_8c.html#a5684e7576dcad5908944beef595160c4">  144</a></span>&#160;<a class="code" href="serial_8c.html#a7322bb1f11c25882787915cde7d3f273">ISR</a>(TIMER0_COMPA_vect, ISR_NOBLOCK) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">volatile</span> <span class="keyword">struct </span><a class="code" href="structregs.html">regs</a> tr0 = { <a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a>, &amp;TIMSK0, &amp;TCCR0B, &amp;PORTD, PORTD6 };</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a>( &amp;tr0 );</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -261,14 +261,14 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
 <div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="tdelay__common_8h.html#a01de17a1ebc340d92f6f9714a61f9733">  154</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="tdelay__common_8c.html#a01de17a1ebc340d92f6f9714a61f9733">_tdc_set_duration</a>(<a class="code" href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a> a_tim, uint32_t a_dur) {</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1 || TDELAY_IMPLEMENT_T1_INT == 1 || TDELAY_IMPLEMENT_T2_INT == 1</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor"></span>    g_tc[a_tim].duration = a_dur;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor"></span>    <a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[a_tim].duration = a_dur;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
 <div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="tdelay__common_8h.html#aaa22dcbf1cb5b116271757c7f010a58f">  161</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="tdelay__common_8c.html#aaa22dcbf1cb5b116271757c7f010a58f">_tdc_set_cmp_pin</a>(<a class="code" href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a> a_tim, uint8_t a_pin) {</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1 || TDELAY_IMPLEMENT_T1_INT == 1 || TDELAY_IMPLEMENT_T2_INT == 1</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor"></span>    g_tc[a_tim].reset_cmpa_pin = a_pin;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor"></span>    <a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[a_tim].reset_cmpa_pin = a_pin;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
@@ -276,7 +276,7 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="tdelay__common_8h.html#a5f49e319908aa8c818dcbdcebd087037">  168</a></span>&#160;<a class="code" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> <a class="code" href="tdelay__common_8c.html#a5f49e319908aa8c818dcbdcebd087037">_tdc_get_timer</a>(<a class="code" href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a> a_timer) {</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">switch</span> (a_timer) {</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> E_TDELAY_TIMER0:</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a>:</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="timer__common_8h.html#ad6b33b119ea7e025f12df7418526e1a4a9f9d4a60f46015e182f5aff602a07f3b">E_TIMER0</a>;</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -305,7 +305,7 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">switch</span> (a_timer) {</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="timer__common_8h.html#ad6b33b119ea7e025f12df7418526e1a4a9f9d4a60f46015e182f5aff602a07f3b">E_TIMER0</a>:</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">return</span> E_TDELAY_TIMER0;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a>;</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor"></span></div>
@@ -354,20 +354,20 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="comment">// deadlock protection</span></div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">switch</span> (a_timer) {</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> E_TDELAY_TIMER0:</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            wait = __tdc_block(a_timer, &amp;TIMSK0, OCIE0A);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a>:</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            wait = <a class="code" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a>(a_timer, &amp;TIMSK0, OCIE0A);</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T1_INT == 1</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> E_TDELAY_TIMER1:</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            wait = __tdc_block(a_timer, &amp;TIMSK1, OCIE1A);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            wait = <a class="code" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a>(a_timer, &amp;TIMSK1, OCIE1A);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T2_INT == 1</span></div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">case</span> E_TDELAY_TIMER2:</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            wait = __tdc_block(a_timer, &amp;TIMSK2, OCIE2A);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            wait = <a class="code" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a>(a_timer, &amp;TIMSK2, OCIE2A);</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor"></span></div>
@@ -376,21 +376,33 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    } <span class="comment">// switch</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#if TDELAY_IMPLEMENT_T0_INT == 1 || TDELAY_IMPLEMENT_T1_INT == 1 || TDELAY_IMPLEMENT_T2_INT == 1</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (wait) <span class="keywordflow">while</span> (g_tc[a_timer].duration);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (wait) <span class="keywordflow">while</span> (<a class="code" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a>[a_timer].<a class="code" href="tdelay__common_8c.html#ab0271216f2e368e7c08c196975719616">duration</a>);</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
 <div class="ttc" id="timer__common_8h_html_ad6b33b119ea7e025f12df7418526e1a4a23332713e09d240bfa07784e0839fd73"><div class="ttname"><a href="timer__common_8h.html#ad6b33b119ea7e025f12df7418526e1a4a23332713e09d240bfa07784e0839fd73">E_TIMER1</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__common_8h_source.html#l00051">timer_common.h:51</a></div></div>
 <div class="ttc" id="timer__common_8c_html_a0a0d080be91beb4b33ee3ce6eb72c725"><div class="ttname"><a href="timer__common_8c.html#a0a0d080be91beb4b33ee3ce6eb72c725">_timer_setup_ctc</a></div><div class="ttdeci">void _timer_setup_ctc(e_timer a_timer, uint32_t a_pocr)</div><div class="ttdoc">setup the top value in OCRXA and the prescaler value accordingly to the contents of combined variable...</div><div class="ttdef"><b>Definition:</b> <a href="timer__common_8c_source.html#l00199">timer_common.c:199</a></div></div>
+<div class="ttc" id="structregs_html_a4dc9cf25d2e650fea314cf53a4e359d5"><div class="ttname"><a href="structregs.html#a4dc9cf25d2e650fea314cf53a4e359d5">regs::timsk</a></div><div class="ttdeci">volatile uint8_t * timsk</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00057">tdelay_common.c:57</a></div></div>
 <div class="ttc" id="timer__common_8h_html_a672c8fd224210b8e7e824c7ab34f1fb5"><div class="ttname"><a href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a></div><div class="ttdeci">enum _e_timer e_timer</div><div class="ttdoc">available timers </div></div>
 <div class="ttc" id="tdelay__common_8c_html_afd2c0f34c8dd0b4e981992470f18094e"><div class="ttname"><a href="tdelay__common_8c.html#afd2c0f34c8dd0b4e981992470f18094e">_tdc_block</a></div><div class="ttdeci">void _tdc_block(e_tdelay_timer a_timer)</div><div class="ttdoc">block until timer expires (must be configured before) </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00243">tdelay_common.c:243</a></div></div>
 <div class="ttc" id="tdelay__common_8c_html_a1a823febbdcba0a024795460f67ffc84"><div class="ttname"><a href="tdelay__common_8c.html#a1a823febbdcba0a024795460f67ffc84">_tdc_get_tdelay_timer</a></div><div class="ttdeci">e_tdelay_timer _tdc_get_tdelay_timer(e_timer a_timer)</div><div class="ttdoc">convert an e_timer to e_tdelay_timer </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00196">tdelay_common.c:196</a></div></div>
+<div class="ttc" id="tdelay__common_8c_html_ab0271216f2e368e7c08c196975719616"><div class="ttname"><a href="tdelay__common_8c.html#ab0271216f2e368e7c08c196975719616">duration</a></div><div class="ttdeci">volatile uint32_t duration</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00042">tdelay_common.c:42</a></div></div>
+<div class="ttc" id="structregs_html_a2b3ff3f88ddb5bd274e0f1623dfe6718"><div class="ttname"><a href="structregs.html#a2b3ff3f88ddb5bd274e0f1623dfe6718">regs::timer</a></div><div class="ttdeci">volatile e_timer timer</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00056">tdelay_common.c:56</a></div></div>
+<div class="ttc" id="tdelay__common_8c_html_a506de82e170576b1e97dcd200ee1fb93"><div class="ttname"><a href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a></div><div class="ttdeci">static uint8_t __tdc_block(e_timer a_timer, volatile uint8_t *timsk, uint8_t map)</div><div class="ttdoc">this function checks if the timer hasn&amp;#39;t expired already </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00098">tdelay_common.c:98</a></div></div>
+<div class="ttc" id="tdelay__common_8c_html_a0bf5c77219a1f5345803c9bdb7b581cc"><div class="ttname"><a href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a></div><div class="ttdeci">static void _isr_tdelay_handler(volatile struct regs *sregs)</div><div class="ttdoc">Common interrupt service routine for all 3 timers. </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00070">tdelay_common.c:70</a></div></div>
+<div class="ttc" id="structregs_html_a2b59f622fb6e98624205063488d022ab"><div class="ttname"><a href="structregs.html#a2b59f622fb6e98624205063488d022ab">regs::pin</a></div><div class="ttdeci">volatile uint8_t pin</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00060">tdelay_common.c:60</a></div></div>
+<div class="ttc" id="tdelay__common_8h_html_acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f"><div class="ttname"><a href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f">E_TDELAY_TIMER0</a></div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8h_source.html#l00051">tdelay_common.h:51</a></div></div>
 <div class="ttc" id="tdelay__common_8c_html_aaa22dcbf1cb5b116271757c7f010a58f"><div class="ttname"><a href="tdelay__common_8c.html#aaa22dcbf1cb5b116271757c7f010a58f">_tdc_set_cmp_pin</a></div><div class="ttdeci">void _tdc_set_cmp_pin(e_tdelay_timer a_tim, uint8_t a_pin)</div><div class="ttdoc">set to 1 if you want to toggle OCMPXA PIN down, once timer expires </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00161">tdelay_common.c:161</a></div></div>
 <div class="ttc" id="tdelay__common_8c_html_a7672f8a7f6f1eaea4adefd77665c78e9"><div class="ttname"><a href="tdelay__common_8c.html#a7672f8a7f6f1eaea4adefd77665c78e9">_tdc_setup_delay</a></div><div class="ttdeci">void _tdc_setup_delay(e_tdelay_timer a_timer, uint32_t a_freq, uint32_t a_delay)</div><div class="ttdoc">configure timer for a specified frequency and duration </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00224">tdelay_common.c:224</a></div></div>
 <div class="ttc" id="tdelay__common_8c_html_a01de17a1ebc340d92f6f9714a61f9733"><div class="ttname"><a href="tdelay__common_8c.html#a01de17a1ebc340d92f6f9714a61f9733">_tdc_set_duration</a></div><div class="ttdeci">void _tdc_set_duration(e_tdelay_timer a_tim, uint32_t a_dur)</div><div class="ttdoc">configure the duration for a given timer </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00154">tdelay_common.c:154</a></div></div>
 <div class="ttc" id="tdelay__common_8c_html_a5f49e319908aa8c818dcbdcebd087037"><div class="ttname"><a href="tdelay__common_8c.html#a5f49e319908aa8c818dcbdcebd087037">_tdc_get_timer</a></div><div class="ttdeci">e_timer _tdc_get_timer(e_tdelay_timer a_timer)</div><div class="ttdoc">convert e_tdelay_timer to e_timer denominator </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00168">tdelay_common.c:168</a></div></div>
+<div class="ttc" id="structregs_html_a6171331353039e6113e26a3b7b3a0dde"><div class="ttname"><a href="structregs.html#a6171331353039e6113e26a3b7b3a0dde">regs::tccrb</a></div><div class="ttdeci">volatile uint8_t * tccrb</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00058">tdelay_common.c:58</a></div></div>
+<div class="ttc" id="structregs_html"><div class="ttname"><a href="structregs.html">regs</a></div><div class="ttdoc">interrupt context structure </div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00055">tdelay_common.c:55</a></div></div>
+<div class="ttc" id="structregs_html_adfcfd7f304a337776b36f479221f197c"><div class="ttname"><a href="structregs.html#adfcfd7f304a337776b36f479221f197c">regs::port</a></div><div class="ttdeci">volatile uint8_t * port</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00059">tdelay_common.c:59</a></div></div>
 <div class="ttc" id="timer__common_8c_html_a1979e4d962f57496a8ee692b645719d0"><div class="ttname"><a href="timer__common_8c.html#a1979e4d962f57496a8ee692b645719d0">_timer_freq_prescale</a></div><div class="ttdeci">uint32_t _timer_freq_prescale(e_timer a_timer, uint32_t a_freq, uint16_t a_criterion)</div><div class="ttdoc">calculate prescaler and OCR value for a given frequency </div><div class="ttdef"><b>Definition:</b> <a href="timer__common_8c_source.html#l00073">timer_common.c:73</a></div></div>
+<div class="ttc" id="tdelay__common_8c_html_a18f076db2229cce274a69fb261317b87"><div class="ttname"><a href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a></div><div class="ttdeci">static struct @0 g_tc[E_TDELAY_TIMER_LAST]</div><div class="ttdoc">those variables hold the delay counters for every timer </div></div>
 <div class="ttc" id="tdelay__common_8h_html_acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979"><div class="ttname"><a href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a></div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8h_source.html#l00062">tdelay_common.h:62</a></div></div>
+<div class="ttc" id="tdelay__common_8c_html_a4373482b40aa509262c98ed6100c3f52"><div class="ttname"><a href="tdelay__common_8c.html#a4373482b40aa509262c98ed6100c3f52">reset_cmpa_pin</a></div><div class="ttdeci">volatile uint8_t reset_cmpa_pin</div><div class="ttdef"><b>Definition:</b> <a href="tdelay__common_8c_source.html#l00045">tdelay_common.c:45</a></div></div>
 <div class="ttc" id="common_8h_html_addf5ec070e9499d36b7f2009ce736076"><div class="ttname"><a href="common_8h.html#addf5ec070e9499d36b7f2009ce736076">UNUSED</a></div><div class="ttdeci">#define UNUSED</div><div class="ttdoc">unused attribute - to make the compiler happy when needed </div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00102">common.h:102</a></div></div>
 <div class="ttc" id="timer__common_8h_html_ad6b33b119ea7e025f12df7418526e1a4a923fdb4931a1e6529586b2a589230fa0"><div class="ttname"><a href="timer__common_8h.html#ad6b33b119ea7e025f12df7418526e1a4a923fdb4931a1e6529586b2a589230fa0">E_TIMER2</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__common_8h_source.html#l00054">timer_common.h:54</a></div></div>
 <div class="ttc" id="tdelay__common_8h_html_aa20a9c4e53426a9978248c17f203681b"><div class="ttname"><a href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a></div><div class="ttdeci">enum _e_tdelay_timer e_tdelay_timer</div><div class="ttdoc">Since we do not have to use all timers for delays, there is no need to implement and declare interrup...</div></div>
@@ -404,7 +416,7 @@ $(document).ready(function(){initNavTree('tdelay__common_8c_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="tdelay__common_8c.html">tdelay_common.c</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

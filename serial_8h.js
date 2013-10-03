@@ -26,7 +26,6 @@ var serial_8h =
     [ "serial_available", "serial_8h.html#aab2a27305e85611ff1f070514960c442", null ],
     [ "serial_flush", "serial_8h.html#a94547a891c369354cec16547930de449", null ],
     [ "serial_get_rx_state", "serial_8h.html#a78b839a317889d4e351b1591f492441f", null ],
-    [ "serial_get_tx_state", "serial_8h.html#a10a1491ffbe5376ee23424588226bbbf", null ],
     [ "serial_getc", "serial_8h.html#a330f9aa227ea44fb5c80c79aa52eed3a", null ],
     [ "serial_init", "serial_8h.html#ae89ef4801997cfa5c2ca0dedc6fd1ca3", null ],
     [ "serial_install_interrupts", "serial_8h.html#adf1b5c3acbd7f1f0be0aea4fdf7af2bd", null ],
@@ -36,7 +35,5 @@ var serial_8h =
     [ "serial_poll_recv", "serial_8h.html#aac180ca3ba20808297d3b3f2c97e0e40", null ],
     [ "serial_poll_send", "serial_8h.html#a03bfe69c095ca9abf3d6e6d8eee79aa8", null ],
     [ "serial_poll_sendc", "serial_8h.html#a409ee99c38dc5569230da6164e4dc6b5", null ],
-    [ "serial_recv", "serial_8h.html#a53624101c64862a0caa01e4182654980", null ],
-    [ "serial_send", "serial_8h.html#a98e13a7177b7d9bf36a150e632f378a4", null ],
-    [ "serial_sendc", "serial_8h.html#a21a26e3eaf75a6479f824e896d079078", null ]
+    [ "serial_recv", "serial_8h.html#a53624101c64862a0caa01e4182654980", null ]
 ];

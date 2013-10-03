@@ -204,12 +204,6 @@ Functions</h2></td></tr>
 <tr class="memitem:adca5415fc803a25956957ef9f12637de"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#adca5415fc803a25956957ef9f12637de">serial_poll_getc</a> (unsigned char *a_data)</td></tr>
 <tr class="memdesc:adca5415fc803a25956957ef9f12637de"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a character through polling. It will block until there is a byte available  <a href="#adca5415fc803a25956957ef9f12637de">More...</a><br/></td></tr>
 <tr class="separator:adca5415fc803a25956957ef9f12637de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98e13a7177b7d9bf36a150e632f378a4"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a98e13a7177b7d9bf36a150e632f378a4">serial_send</a> (void *a_data, unsigned int a_size, unsigned char a_waitall)</td></tr>
-<tr class="memdesc:a98e13a7177b7d9bf36a150e632f378a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">send data using interrupts  <a href="#a98e13a7177b7d9bf36a150e632f378a4">More...</a><br/></td></tr>
-<tr class="separator:a98e13a7177b7d9bf36a150e632f378a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a26e3eaf75a6479f824e896d079078"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a21a26e3eaf75a6479f824e896d079078">serial_sendc</a> (unsigned char a_data)</td></tr>
-<tr class="memdesc:a21a26e3eaf75a6479f824e896d079078"><td class="mdescLeft">&#160;</td><td class="mdescRight">send a character using interrupts  <a href="#a21a26e3eaf75a6479f824e896d079078">More...</a><br/></td></tr>
-<tr class="separator:a21a26e3eaf75a6479f824e896d079078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03bfe69c095ca9abf3d6e6d8eee79aa8"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a03bfe69c095ca9abf3d6e6d8eee79aa8">serial_poll_send</a> (void *a_data, unsigned int a_size)</td></tr>
 <tr class="memdesc:a03bfe69c095ca9abf3d6e6d8eee79aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">send data using serial port TX status polling (it will block until data is fully transmitted)  <a href="#a03bfe69c095ca9abf3d6e6d8eee79aa8">More...</a><br/></td></tr>
 <tr class="separator:a03bfe69c095ca9abf3d6e6d8eee79aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,9 +213,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a78b839a317889d4e351b1591f492441f"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="serial_8h.html#adb8a97d4b86a6b2ed9ccdff43d304b05">t_buffer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a78b839a317889d4e351b1591f492441f">serial_get_rx_state</a> ()</td></tr>
 <tr class="memdesc:a78b839a317889d4e351b1591f492441f"><td class="mdescLeft">&#160;</td><td class="mdescRight">return serial buffer context for RX (information and statistics about serial port)  <a href="#a78b839a317889d4e351b1591f492441f">More...</a><br/></td></tr>
 <tr class="separator:a78b839a317889d4e351b1591f492441f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10a1491ffbe5376ee23424588226bbbf"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="serial_8h.html#adb8a97d4b86a6b2ed9ccdff43d304b05">t_buffer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a10a1491ffbe5376ee23424588226bbbf">serial_get_tx_state</a> ()</td></tr>
-<tr class="memdesc:a10a1491ffbe5376ee23424588226bbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">return serial buffer context for TX (information and statistics about serial port)  <a href="#a10a1491ffbe5376ee23424588226bbbf">More...</a><br/></td></tr>
-<tr class="separator:a10a1491ffbe5376ee23424588226bbbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94547a891c369354cec16547930de449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8h.html#a94547a891c369354cec16547930de449">serial_flush</a> ()</td></tr>
 <tr class="memdesc:a94547a891c369354cec16547930de449"><td class="mdescLeft">&#160;</td><td class="mdescRight">flush data &amp; rx fifo  <a href="#a94547a891c369354cec16547930de449">More...</a><br/></td></tr>
 <tr class="separator:a94547a891c369354cec16547930de449"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -391,7 +382,7 @@ Functions</h2></td></tr>
 <p>check how many bytes are available, pending to be read (this only works if RX interrupts are installed) </p>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes received and waiting </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00313">313</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00317">317</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -410,7 +401,7 @@ Functions</h2></td></tr>
 
 <p>flush data &amp; rx fifo </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00474">474</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00483">483</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -430,27 +421,7 @@ Functions</h2></td></tr>
 <p>return serial buffer context for RX (information and statistics about serial port) </p>
 <dl class="section return"><dt>Returns</dt><dd>serial buffer info </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00487">487</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a10a1491ffbe5376ee23424588226bbbf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">volatile <a class="el" href="serial_8h.html#adb8a97d4b86a6b2ed9ccdff43d304b05">t_buffer</a>* serial_get_tx_state </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>return serial buffer context for TX (information and statistics about serial port) </p>
-<dl class="section return"><dt>Returns</dt><dd>serial buffer info </dd></dl>
-
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00494">494</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00496">496</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -477,7 +448,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if character available, 0 if not </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00356">356</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00360">360</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -530,7 +501,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00279">279</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00283">283</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -549,7 +520,7 @@ Functions</h2></td></tr>
 
 <p>install serial handlers so we can use printf-like functions with serial console </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00303">303</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00307">307</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -587,7 +558,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes available </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00318">318</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00322">322</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -614,7 +585,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>always 1 </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00385">385</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00389">389</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -652,7 +623,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes read </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00368">368</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00372">372</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -690,7 +661,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes sent </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00455">455</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00464">464</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -717,7 +688,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if success, 0 if failure </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00469">469</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00478">478</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -762,81 +733,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes read </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00332">332</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a98e13a7177b7d9bf36a150e632f378a4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char serial_send </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>a_data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>a_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>a_waitall</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>send data using interrupts </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a_data</td><td>data to be send </td></tr>
-    <tr><td class="paramname">a_size</td><td>size of data </td></tr>
-    <tr><td class="paramname">a_waitall</td><td>block until everything is sent</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of characters send </dd></dl>
-<p>do not overflow the buffer </p>
-
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00391">391</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a21a26e3eaf75a6479f824e896d079078"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char serial_sendc </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>a_data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>send a character using interrupts </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a_data</td><td>character to be sent</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if sent </dd></dl>
-<p>do not overflow the buffer </p>
-
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00434">434</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00336">336</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -846,7 +743,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="serial_8h.html">serial.h</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['regs',['regs',['../structregs.html',1,'']]],
+  ['reset_5fcmpa_5fpin',['reset_cmpa_pin',['../tdelay__common_8c.html#a4373482b40aa509262c98ed6100c3f52',1,'tdelay_common.c']]],
   ['ret_5ferror',['RET_ERROR',['../common_8h.html#a1180094064324e2c7b1244f33f2323d1ae8ed27c1aabd77d519426a8ad340d76c',1,'common.h']]],
   ['ret_5ferror_5fparameter',['RET_ERROR_PARAMETER',['../common_8h.html#a1180094064324e2c7b1244f33f2323d1a39a95f1408e64a512ebc633d25bdfc24',1,'common.h']]],
   ['ret_5ferror_5fresources',['RET_ERROR_RESOURCES',['../common_8h.html#a1180094064324e2c7b1244f33f2323d1a7555b57aa82952b06c2d9a75eb79278c',1,'common.h']]],

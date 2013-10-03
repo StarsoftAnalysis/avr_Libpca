@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('serial_04_8c-example.html','');});
 <div class="line">    uint8_t size = 0x00;</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// exit in case of reception error</span></div>
-<div class="line">    <span class="keywordflow">if</span> (0 &gt;= (size = <a name="a0"></a><a class="code" href="slip_8c.html#a393d81397cb0fdf1520a182fd20142b8">slip_recv</a>((<span class="keywordtype">void</span> *)data, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> packet)))) {</div>
+<div class="line">    <span class="keywordflow">if</span> (0 &gt;= (size = <a name="a0"></a><a class="code" href="slip_8c.html#af6cb8948b66ca18851a88db2bca707ce">slip_recv</a>((<span class="keywordtype">void</span> *)data, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> packet)))) {</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">    }</div>
 <div class="line"></div>
@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('serial_04_8c-example.html','');});
 <div class="line">    <span class="comment">// verify if the information is genuine</span></div>
 <div class="line">    <span class="comment">// of course this is only additional step, one do not really need to do that</span></div>
 <div class="line">    <span class="comment">// it he only wants to be sure that the data send is correctly synchronized</span></div>
-<div class="line">    <span class="keywordflow">if</span> (!<a name="a1"></a><a class="code" href="slip_8c.html#ac13963a970d92b403b9ed0273c11b471">slip_verify_crc16</a>((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)data, size, 0)) {</div>
+<div class="line">    <span class="keywordflow">if</span> (!<a name="a1"></a><a class="code" href="slip_8c.html#aa61e0ddc6c1e9a4dc3efe1417649ff5a">slip_verify_crc16</a>((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *)data, size, 0)) {</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">    }</div>
 <div class="line"></div>
@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('serial_04_8c-example.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

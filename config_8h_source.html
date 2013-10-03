@@ -160,7 +160,7 @@ $(document).ready(function(){initNavTree('config_8h_source.html','');});
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * Serial transmission will be only possible character by character without any buffering,</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * using only polling mechanisms</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="config_8h.html#af0c933421db20a71a75385371d70551a">   55</a></span>&#160;<span class="preprocessor">#define SERIAL_IMPLEMENT_TX_INT 1</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="config_8h.html#af0c933421db20a71a75385371d70551a">   55</a></span>&#160;<span class="preprocessor">#define SERIAL_IMPLEMENT_TX_INT 0</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @brief 1 - STDIN data will be received by polling, 0 - interrupts</span></div>
@@ -170,7 +170,7 @@ $(document).ready(function(){initNavTree('config_8h_source.html','');});
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * @brief 1 - STDOUT data will be sent by polling, 0 - interrupts</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="config_8h.html#a489984c7d7bb9016510e078d0b400881">   65</a></span>&#160;<span class="preprocessor">#define SERIAL_STDOUT_POLL 0</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="config_8h.html#a489984c7d7bb9016510e078d0b400881">   65</a></span>&#160;<span class="preprocessor">#define SERIAL_STDOUT_POLL 1</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> * @brief RX ring buffer size if SERIAL_IMPLEMENT_RX_INT == 1</span></div>
@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('config_8h_source.html','');});
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> * In case user wants to define his own ISR for TIMER0_COMPA_vect, he should disable the library implementation</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="config_8h.html#aed0be2b6352c3c99e43d560f15bd1a2b">   90</a></span>&#160;<span class="preprocessor">#define TDELAY_IMPLEMENT_T0_INT 0</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="config_8h.html#aed0be2b6352c3c99e43d560f15bd1a2b">   90</a></span>&#160;<span class="preprocessor">#define TDELAY_IMPLEMENT_T0_INT 1</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @brief change to 0 if to disable timer 1 delay and beeper interrupts and routines</span></div>
@@ -222,7 +222,7 @@ $(document).ready(function(){initNavTree('config_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="config_8h.html">config.h</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

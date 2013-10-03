@@ -7,8 +7,8 @@ var slip_8h =
     [ "SLIP_ESC_END", "slip_8h.html#a660be27a37d4105d47000a333dd26c1a", null ],
     [ "SLIP_ESC_ESC", "slip_8h.html#a75cd5d5e3cdfa54f2a7c6d137406bb72", null ],
     [ "SLIP_VERSION", "slip_8h.html#a36c6dbe28ec748d33db8cf581b1d2821", null ],
-    [ "slip_append_crc16", "slip_8h.html#a2e0f711eecbf7087e5d6438fe3cb7a49", null ],
-    [ "slip_recv", "slip_8h.html#a393d81397cb0fdf1520a182fd20142b8", null ],
-    [ "slip_send", "slip_8h.html#a553edfcd91567455fe010d59705949c7", null ],
-    [ "slip_verify_crc16", "slip_8h.html#ac13963a970d92b403b9ed0273c11b471", null ]
+    [ "slip_append_crc16", "slip_8h.html#a3e4322a2569a790af9abe61c880813c5", null ],
+    [ "slip_recv", "slip_8h.html#af6cb8948b66ca18851a88db2bca707ce", null ],
+    [ "slip_send", "slip_8h.html#a25f43dc7a16e8e28003a9693d80f43a0", null ],
+    [ "slip_verify_crc16", "slip_8h.html#aa61e0ddc6c1e9a4dc3efe1417649ff5a", null ]
 ];

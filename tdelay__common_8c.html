@@ -103,7 +103,9 @@ $(document).ready(function(){initNavTree('tdelay__common_8c.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">tdelay_common.c File Reference</div>  </div>
 </div><!--header-->
@@ -118,8 +120,23 @@ $(document).ready(function(){initNavTree('tdelay__common_8c.html','');});
 </div>
 <p><a href="tdelay__common_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structregs.html">regs</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt context structure  <a href="structregs.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a0bf5c77219a1f5345803c9bdb7b581cc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#a0bf5c77219a1f5345803c9bdb7b581cc">_isr_tdelay_handler</a> (volatile struct <a class="el" href="structregs.html">regs</a> *sregs)</td></tr>
+<tr class="memdesc:a0bf5c77219a1f5345803c9bdb7b581cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common interrupt service routine for all 3 timers.  <a href="#a0bf5c77219a1f5345803c9bdb7b581cc">More...</a><br/></td></tr>
+<tr class="separator:a0bf5c77219a1f5345803c9bdb7b581cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506de82e170576b1e97dcd200ee1fb93"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#a506de82e170576b1e97dcd200ee1fb93">__tdc_block</a> (<a class="el" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a> a_timer, volatile uint8_t *timsk, uint8_t map)</td></tr>
+<tr class="memdesc:a506de82e170576b1e97dcd200ee1fb93"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function checks if the timer hasn't expired already  <a href="#a506de82e170576b1e97dcd200ee1fb93">More...</a><br/></td></tr>
+<tr class="separator:a506de82e170576b1e97dcd200ee1fb93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5684e7576dcad5908944beef595160c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#a5684e7576dcad5908944beef595160c4">ISR</a> (TIMER0_COMPA_vect, ISR_NOBLOCK)</td></tr>
+<tr class="memdesc:a5684e7576dcad5908944beef595160c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer 0  <a href="#a5684e7576dcad5908944beef595160c4">More...</a><br/></td></tr>
+<tr class="separator:a5684e7576dcad5908944beef595160c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01de17a1ebc340d92f6f9714a61f9733"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#a01de17a1ebc340d92f6f9714a61f9733">_tdc_set_duration</a> (<a class="el" href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a> a_tim, uint32_t a_dur)</td></tr>
 <tr class="memdesc:a01de17a1ebc340d92f6f9714a61f9733"><td class="mdescLeft">&#160;</td><td class="mdescRight">configure the duration for a given timer  <a href="#a01de17a1ebc340d92f6f9714a61f9733">More...</a><br/></td></tr>
 <tr class="separator:a01de17a1ebc340d92f6f9714a61f9733"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,12 +155,111 @@ Functions</h2></td></tr>
 <tr class="memitem:afd2c0f34c8dd0b4e981992470f18094e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#afd2c0f34c8dd0b4e981992470f18094e">_tdc_block</a> (<a class="el" href="tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b">e_tdelay_timer</a> a_timer)</td></tr>
 <tr class="memdesc:afd2c0f34c8dd0b4e981992470f18094e"><td class="mdescLeft">&#160;</td><td class="mdescRight">block until timer expires (must be configured before)  <a href="#afd2c0f34c8dd0b4e981992470f18094e">More...</a><br/></td></tr>
 <tr class="separator:afd2c0f34c8dd0b4e981992470f18094e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a18f076db2229cce274a69fb261317b87"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:ab0271216f2e368e7c08c196975719616"><td class="memItemLeft" >&#160;&#160;&#160;volatile uint32_t&#160;&#160;&#160;<a class="el" href="tdelay__common_8c.html#ab0271216f2e368e7c08c196975719616">duration</a></td></tr>
+<tr class="separator:ab0271216f2e368e7c08c196975719616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4373482b40aa509262c98ed6100c3f52"><td class="memItemLeft" >&#160;&#160;&#160;volatile uint8_t&#160;&#160;&#160;<a class="el" href="tdelay__common_8c.html#a4373482b40aa509262c98ed6100c3f52">reset_cmpa_pin</a></td></tr>
+<tr class="separator:a4373482b40aa509262c98ed6100c3f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18f076db2229cce274a69fb261317b87"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tdelay__common_8c.html#a18f076db2229cce274a69fb261317b87">g_tc</a> [<a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>]</td></tr>
+<tr class="memdesc:a18f076db2229cce274a69fb261317b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">those variables hold the delay counters for every timer  <a href="#a18f076db2229cce274a69fb261317b87">More...</a><br/></td></tr>
+<tr class="separator:a18f076db2229cce274a69fb261317b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Timer Delay / Beeper common routines implementation. </p>
 
 <p>Definition in file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a506de82e170576b1e97dcd200ee1fb93"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t __tdc_block </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="timer__common_8h.html#a672c8fd224210b8e7e824c7ab34f1fb5">e_timer</a>&#160;</td>
+          <td class="paramname"><em>a_timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">volatile uint8_t *&#160;</td>
+          <td class="paramname"><em>timsk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>this function checks if the timer hasn't expired already </p>
+<p>The purpose is to protect the actual block function from blocking forever, once the timer already has expired and disabled it's interrupt</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_timer</td><td>timer </td></tr>
+    <tr><td class="paramname">timsk</td><td>timer interrupt mask register </td></tr>
+    <tr><td class="paramname">map</td><td>which bit to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 - if the timer hasn't expired and we should block, 0 otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="tdelay__common_8c_source.html#l00098">98</a> of file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0bf5c77219a1f5345803c9bdb7b581cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _isr_tdelay_handler </td>
+          <td>(</td>
+          <td class="paramtype">volatile struct <a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>sregs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Common interrupt service routine for all 3 timers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sregs</td><td>timer specific register &amp; parameters structure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="tdelay__common_8c_source.html#l00070">70</a> of file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="afd2c0f34c8dd0b4e981992470f18094e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -358,13 +474,92 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5684e7576dcad5908944beef595160c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ISR </td>
+          <td>(</td>
+          <td class="paramtype">TIMER0_COMPA_vect&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ISR_NOBLOCK&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>timer 0 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TIMER0_COMPA_vect</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="tdelay__common_8c_source.html#l00144">144</a> of file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ab0271216f2e368e7c08c196975719616"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t duration</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="tdelay__common_8c_source.html#l00042">42</a> of file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18f076db2229cce274a69fb261317b87"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   g_tc[<a class="el" href="tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979">E_TDELAY_TIMER_LAST</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>those variables hold the delay counters for every timer </p>
+
+</div>
+</div>
+<a class="anchor" id="a4373482b40aa509262c98ed6100c3f52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t reset_cmpa_pin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="tdelay__common_8c_source.html#l00045">45</a> of file <a class="el" href="tdelay__common_8c_source.html">tdelay_common.c</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="tdelay__common_8c.html">tdelay_common.c</a></li>
-    <li class="footer">Generated on Tue Oct 1 2013 14:12:16 for Pure C Arduino Library by
+    <li class="footer">Generated on Thu Oct 3 2013 14:21:05 for Pure C Arduino Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
