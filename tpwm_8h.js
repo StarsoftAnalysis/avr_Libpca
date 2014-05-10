@@ -1,6 +1,7 @@
 var tpwm_8h =
 [
     [ "e_pwm_freq", "tpwm_8h.html#a300de294a6b503a00a06d3a458672a4b", null ],
+    [ "e_pwm_quantity", "tpwm_8h.html#aa29add651c21e6f572b84c3bb06dd451", null ],
     [ "_e_pwm_freq", "tpwm_8h.html#a67beef6a29f674d37837af6c21e335d3", [
       [ "E_PWM_FREQ_4M", "tpwm_8h.html#a67beef6a29f674d37837af6c21e335d3a070eac7d7c7687ff6af259c80d51812f", null ],
       [ "E_PWM_FREQ_2M", "tpwm_8h.html#a67beef6a29f674d37837af6c21e335d3a5408398ebbba1e0743dd1b21accd079f", null ],
@@ -19,8 +20,12 @@ var tpwm_8h =
       [ "E_PWM_FREQ_244", "tpwm_8h.html#a67beef6a29f674d37837af6c21e335d3a6ebaf6955c5867d21af92a6de0a9351a", null ],
       [ "E_PWM_FREQ_61", "tpwm_8h.html#a67beef6a29f674d37837af6c21e335d3ab7e881f93133730c92f35069c69c8d75", null ]
     ] ],
-    [ "tpwm_fpwm_init", "tpwm_8h.html#adbd972c47f31990100ae9cbbe33b6c37", null ],
-    [ "tpwm_pwm_init", "tpwm_8h.html#ac9cf56a2b75dbca64b4844496cba05cc", null ],
+    [ "_e_pwm_quantity", "tpwm_8h.html#a5c1c260661cf712f2a21d9bf86ba7a58", [
+      [ "E_PWM_SINGLE", "tpwm_8h.html#a5c1c260661cf712f2a21d9bf86ba7a58ad2f7263c92d932dc659f1343420f1712", null ],
+      [ "E_PWM_DOUBLE", "tpwm_8h.html#a5c1c260661cf712f2a21d9bf86ba7a58ae678d77235d33c632e38386caa9a6e82", null ]
+    ] ],
+    [ "tpwm_fpwm_init", "tpwm_8h.html#a35f6a116c076c90b2776ddefe23e767a", null ],
+    [ "tpwm_pwm_init", "tpwm_8h.html#a2bf0f09d63dc93f1e335a936fd53a7e9", null ],
     [ "tpwm_setup_for_bitres", "tpwm_8h.html#a95b58033cf633282f1bffbf20fca288c", null ],
     [ "tpwm_setup_for_freq", "tpwm_8h.html#a1bb1a1bd59a10c32c609d18c41bf51db", null ]
 ];

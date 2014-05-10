@@ -14,5 +14,10 @@ var searchData=
   ['slip_5fesc',['SLIP_ESC',['../slip_8h.html#a379cfa838122508f0e88fbbe8ce80c47',1,'slip.h']]],
   ['slip_5fesc_5fend',['SLIP_ESC_END',['../slip_8h.html#a660be27a37d4105d47000a333dd26c1a',1,'slip.h']]],
   ['slip_5fesc_5fesc',['SLIP_ESC_ESC',['../slip_8h.html#a75cd5d5e3cdfa54f2a7c6d137406bb72',1,'slip.h']]],
-  ['slip_5fversion',['SLIP_VERSION',['../slip_8h.html#a36c6dbe28ec748d33db8cf581b1d2821',1,'slip.h']]]
+  ['slip_5fimplement_5fcrc16',['SLIP_IMPLEMENT_CRC16',['../config_8h.html#a972b9515dafd8eeeb6415e28f7887930',1,'config.h']]],
+  ['slip_5fversion',['SLIP_VERSION',['../slip_8h.html#a36c6dbe28ec748d33db8cf581b1d2821',1,'slip.h']]],
+  ['sow_5fhigh',['SOW_HIGH',['../soft__onewire_8c.html#a7d2da9a70b3970e82d01af72fcfb588b',1,'soft_onewire.c']]],
+  ['sow_5finput',['SOW_INPUT',['../soft__onewire_8c.html#a8385f975b3310f8916f9349d66109685',1,'soft_onewire.c']]],
+  ['sow_5flow',['SOW_LOW',['../soft__onewire_8c.html#ae78516b304b16e88def7ac6fec39b685',1,'soft_onewire.c']]],
+  ['sow_5foutput',['SOW_OUTPUT',['../soft__onewire_8c.html#a3764f6770ed2e712ab188c08f27ab835',1,'soft_onewire.c']]]
 ];

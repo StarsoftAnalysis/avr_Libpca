@@ -2,7 +2,6 @@ var tdelay__common_8h =
 [
     [ "e_tdelay_timer", "tdelay__common_8h.html#aa20a9c4e53426a9978248c17f203681b", null ],
     [ "_e_tdelay_timer", "tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780f", [
-      [ "E_TDELAY_TIMER0", "tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faad64ac01b7dc8f6fa4879b0b860d757f", null ],
       [ "E_TDELAY_TIMER_LAST", "tdelay__common_8h.html#acf4ece72464f7f9438b6d230fe76780faa8e395b502795bd72a2628b1f14f3979", null ]
     ] ],
     [ "_tdc_block", "tdelay__common_8h.html#afd2c0f34c8dd0b4e981992470f18094e", null ],

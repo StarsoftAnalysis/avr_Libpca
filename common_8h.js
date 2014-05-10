@@ -1,5 +1,11 @@
 var common_8h =
 [
+    [ "BCD2BIN", "common_8h.html#a0c6999df6a1fbd2dd6a014ea5dffbb49", null ],
+    [ "BIN2BCD", "common_8h.html#afe222ad440fea8175bdce562d3a1a6db", null ],
+    [ "common_zero_mem", "common_8h.html#a8d1fb8135a25f12fbc41a95b3e74eea3", null ],
+    [ "EXCHANGE", "common_8h.html#a0a57db1d6c1fd9786a94d87e7d5b67e8", null ],
+    [ "GET_DDRX_FROM_PORTX", "common_8h.html#afc7f2c38af4060acc1a07868ea18d18d", null ],
+    [ "GET_PINX_FROM_PORTX", "common_8h.html#ae11b5db3108ffc8e951ec9e3cfacb7d9", null ],
     [ "IS_ERROR", "common_8h.html#a69e4f580e79eab8582216f09d58164e5", null ],
     [ "IS_WARNING", "common_8h.html#a812cbe9f6e820e6a4dac3c6e520b5419", null ],
     [ "IS_WARNING_OK", "common_8h.html#a1594597d58b12007a6a41921bd71cf29", null ],
@@ -23,5 +29,6 @@ var common_8h =
       [ "RET_ERROR_RESOURCES", "common_8h.html#a1180094064324e2c7b1244f33f2323d1a7555b57aa82952b06c2d9a75eb79278c", null ]
     ] ],
     [ "common_abs", "common_8h.html#a178abd07c675d91cb4434c2ae79254a2", null ],
+    [ "common_ditherPoint", "common_8h.html#ae1669807e1db23eb7f1dc6e8b0112d25", null ],
     [ "common_memory_left", "common_8h.html#a89e9fcb5c92229408259eb5a45ce4b05", null ]
 ];
