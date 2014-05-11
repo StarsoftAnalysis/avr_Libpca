@@ -6,6 +6,7 @@ var examples =
     [ "d7seg.c", "d7seg_8c-example.html", null ],
     [ "ds1307.c", "ds1307_8c-example.html", null ],
     [ "ds18b20.c", "ds18b20_8c-example.html", null ],
+    [ "gpio.c", "gpio_8c-example.html", null ],
     [ "hd44780.c", "hd44780_8c-example.html", null ],
     [ "pcd8544.c", "pcd8544_8c-example.html", null ],
     [ "serial_01.c", "serial_01_8c-example.html", null ],
