@@ -26,14 +26,33 @@
 
 #define DECLARE_RING(__type) \
     typedef struct _ring_buffer { \
+        /// head of the buffer (write position) \
         volatile __type head; \
+        \
+        /// tail of the buffer (read position) \
         volatile __type tail; \
-        volatile __type size; \
+        \
+        /// total capacity of the ring buffer \
+        volatile __type capacity; \
+        \
+        /// data \
         volatile uint8_t ring[]; \
     }
 
 
+/**
+ * @brief 8 bit ring buffer.
+ *
+ * Defines a ring buffer of bytes type, which has internal indexes of uint8_t type.
+ */
 DECLARE_RING(uint8_t) ring_buffer8;
+
+
+/**
+ * @brief 16 ring buffer.
+ *
+ * Defines a ring buffer of bytes type, which has internal indexes of uint16_t type.
+ */
 DECLARE_RING(uint16_t) ring_buffer16;
 
 

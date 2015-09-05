@@ -73,30 +73,62 @@ typedef struct _gpio_pin {
 	(__portx - 2)
 
 
+/**
+ * @brief configures given gpio as output
+ *
+ * @param __val pointer to gpio_pin instance.
+ */
 #define GPIO_CONFIGURE_AS_OUTPUT(__gpio) \
 	*(GET_DDRX_FROM_PORTX((__gpio)->port)) |= _BV((__gpio)->pin)
 
 
+/**
+ * @brief configures given gpio as input
+ *
+ * @param __val pointer to gpio_pin instance.
+ */
 #define GPIO_CONFIGURE_AS_INPUT(__gpio) \
 	*(GET_DDRX_FROM_PORTX((__gpio)->port)) &= ~_BV((__gpio)->pin)
 
 
+/**
+ * @brief get the value of GPIO pin
+ *
+ * @param __val pointer to gpio_pin instance.
+ *
+ * @return Zero if unset, non-zero value otherwise.
+ */
 #define GPIO_GET(__gpio) \
 	(*(GET_PINX_FROM_PORTX((__gpio)->port)) & _BV((__gpio)->pin))
 
 
+/**
+ * @brief set the value of GPIO pin low
+ *
+ * @param __val pointer to gpio_pin instance.
+ */
 #define GPIO_SET_LOW(__gpio) \
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { \
 		(*(__gpio)->port) &= ~_BV((__gpio)->pin); \
 	}
 
 
+/**
+ * @brief set the value of GPIO pin high
+ *
+ * @param __val pointer to gpio_pin instance.
+ */
 #define GPIO_SET_HIGH(__gpio) \
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { \
 		(*(__gpio)->port) |= _BV((__gpio)->pin); \
 	}
 
 
+/**
+ * @brief toggle's (negate it's current value) the value of gpio pin
+ *
+ * @param __val pointer to gpio_pin instance.
+ */
 #define GPIO_TOGGLE(__gpio) \
 	*(GET_PINX_FROM_PORTX((__gpio)->port)) = _BV((__gpio)->pin)
 
