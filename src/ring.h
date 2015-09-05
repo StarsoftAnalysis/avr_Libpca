@@ -1,50 +1,40 @@
 #ifndef RING_H_FDIQOKDH
 #define RING_H_FDIQOKDH
 
-/* Copyright (C) 
+/* Copyright (C)
  * 2014 - Tomasz Wisniewski
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * 
+ *
  */
 
 
 #include <stdint.h>
-
-/**
- * @brief ring buffer type definition
- *
- * This structure provides a general ring buffer definition which may be used in bus/interfaces implementations
- */
-typedef struct _ring_buffer {
-
-	/// head index
-	volatile unsigned char head;
-
-	/// tail index
-	volatile unsigned char tail;
-
-	/// data storage space for the ring buffer
-	volatile unsigned char ring[1];
-
-} ring_buffer;
+#include <stdlib.h>
 
 
-/**
- * @brief macro to declare the size of the ring buffer
- */
-#define RING_SIZE (sizeof(ring_buffer) - 1)
+#define DECLARE_RING(__type) \
+    typedef struct _ring_buffer { \
+        volatile __type head; \
+        volatile __type tail; \
+        volatile __type size; \
+        volatile uint8_t ring[]; \
+    }
+
+
+DECLARE_RING(uint8_t) ring_buffer8;
+DECLARE_RING(uint16_t) ring_buffer16;
 
 
 #endif /* end of include guard: RING_H_FDIQOKDH */

@@ -1,31 +1,31 @@
 #ifndef GPIO_H_TUGJ3L7E
 #define GPIO_H_TUGJ3L7E
 
-/* Copyright (C) 
+/* Copyright (C)
  * 2014 - Tomasz Wisniewski
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * 
+ *
  */
 
 
 /**
- * @file gpio.h 
+ * @file gpio.h
  *
  * @brief Simple GPIO abstraction layer
  *
- * This module defines simple abstraction layer for the GPIO lines. You can build gpio independent drivers with this 
+ * This module defines simple abstraction layer for the GPIO lines. You can build gpio independent drivers with this
  * implementation. There's no longer need to use ambiguous macro definitions. Please refer to the gpio example
  * on details how to use this API
  *
@@ -51,9 +51,31 @@ typedef struct _gpio_pin {
 } gpio_pin;
 
 
+/**
+ * @brief get pointer to DDR register from PORT register
+ *
+ * @param __val pointer to PORT register
+ *
+ * @return pointer to DDR register
+ */
+#define GET_DDRX_FROM_PORTX(__portx) \
+	(__portx - 1)
+
+
+/**
+ * @brief get pointer to PIN register from PORT register
+ *
+ * @param __val pointer to PORT register
+ *
+ * @return pointer to PIN register
+ */
+#define GET_PINX_FROM_PORTX(__portx) \
+	(__portx - 2)
+
+
 #define GPIO_CONFIGURE_AS_OUTPUT(__gpio) \
 	*(GET_DDRX_FROM_PORTX((__gpio)->port)) |= _BV((__gpio)->pin)
-	
+
 
 #define GPIO_CONFIGURE_AS_INPUT(__gpio) \
 	*(GET_DDRX_FROM_PORTX((__gpio)->port)) &= ~_BV((__gpio)->pin)
