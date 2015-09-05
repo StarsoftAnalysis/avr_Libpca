@@ -20,9 +20,6 @@
  */
 
 
-#include "config.h"
-#include "common.h"
-
 /**
  * @brief utility function to convert the tmp36 ADC reading to the Celsius temperature
  */
