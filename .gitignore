@@ -1,2 +1,11 @@
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
 docs/html/
 docs/latex/
+include/version/version.h
+install_manifest.txt
+libpca*.a
+Makefile
+PcaConfig.cmake
+PcaConfigVersion.cmake

@@ -1,0 +1,10 @@
+# - Config file for the FooBar package
+# It defines the following variables
+#  PCA_INCLUDE_DIRS - include directories for FooBar
+#  PCA_LIBRARIES    - libraries to link against
+
+# Compute paths
+get_filename_component(PCA_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(PCA_INCLUDE_DIR "@PCA_INCLUDE_DIR@")
+set(PCA_LIBRARIES_DIR "@PCA_LIBRARIES_DIR@")
+set(PCA_LIBRARY "@PCA_LIBRARY@")
