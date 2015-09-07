@@ -1,5 +1,5 @@
-#ifndef __SERIAL_H__
-#define __SERIAL_H__
+#ifndef SERIAL_H_GPKUWB0J
+#define SERIAL_H_GPKUWB0J
 
 /* Copyright (C)
  * 2015 - Tomasz Wisniewski
@@ -20,42 +20,28 @@
  */
 
 
-#include "ring.h"
-#include "usart_map.h"
-#include "usart_stats.h"
-
-#include "config/serial.h"
-
-#include <stdint.h>
+/**
+ * @brief change to 0 and rebuild if you do not need stats information
+ */
+#define SERIAL_COLLECT_STATS 0
 
 
 /**
- * @brief General purpose USART descriptor
+ * @brief RX ring buffer size if SERIAL_IMPLEMENT_RX_INT == 1
+ *
+ * For high speeds and very busy applications one may consider increasing the RX ring buffer size
+ * This variable has any useful meaning only if SERIAL_IMPLEMENT_RX_INT == 1
  */
-typedef struct _usart {
-    /// USART device port map pointer
-    volatile usart_map * const um;
+#define SERIAL_RX_RING_SIZE 64
 
 
-    /// ingress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_RX_RING_SIZE + sizeof(ring_buffer8)];
-    } rx;
+/**
+ * @brief TX ring buffer size if SERIAL_IMPLEMENT_TX_INT == 1
+ *
+ * For high speeds and very busy applications one may consider increasing the TX ring buffer size
+ * This variable has any useful meaning only if SERIAL_IMPLEMENT_TX_INT == 1
+ */
+#define SERIAL_TX_RING_SIZE 64
 
 
-    /// egress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_TX_RING_SIZE + sizeof(ring_buffer8)];
-    } tx;
-
-
-#if SERIAL_COLLECT_STATS == 1
-    volatile usart_stats stats;
-#endif
-
-} usart;
-
-
-#endif /* __SERIAL_H__ */
+#endif /* end of include guard: SERIAL_H_GPKUWB0J */

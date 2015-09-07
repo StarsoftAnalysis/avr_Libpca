@@ -1,5 +1,5 @@
-#ifndef __SERIAL_H__
-#define __SERIAL_H__
+#ifndef USART_STATS_H_JTB3WXE4
+#define USART_STATS_H_JTB3WXE4
 
 /* Copyright (C)
  * 2015 - Tomasz Wisniewski
@@ -20,42 +20,22 @@
  */
 
 
-#include "ring.h"
-#include "usart_map.h"
-#include "usart_stats.h"
-
-#include "config/serial.h"
-
 #include <stdint.h>
 
 
 /**
- * @brief General purpose USART descriptor
+ * @brief IO buffer statistics type  declaration
  */
-typedef struct _usart {
-    /// USART device port map pointer
-    volatile usart_map * const um;
+typedef struct _usart_stats {
+	/// number of a valid rx/tx bytes
+	volatile uint32_t ok;
+
+	/// number of dropped data bytes due to buffer being full
+	volatile uint32_t dropped;
+
+	/// number of bytes received with frame error indicator
+	volatile uint32_t frame_error;
+} usart_stats;
 
 
-    /// ingress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_RX_RING_SIZE + sizeof(ring_buffer8)];
-    } rx;
-
-
-    /// egress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_TX_RING_SIZE + sizeof(ring_buffer8)];
-    } tx;
-
-
-#if SERIAL_COLLECT_STATS == 1
-    volatile usart_stats stats;
-#endif
-
-} usart;
-
-
-#endif /* __SERIAL_H__ */
+#endif /* end of include guard: USART_STATS_H_JTB3WXE4 */

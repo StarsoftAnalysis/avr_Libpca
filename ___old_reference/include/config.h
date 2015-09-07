@@ -33,11 +33,6 @@
 // ============================ SERIAL PORT =======================================
 
 /**
- * @brief change to 0 and rebuild if you do not need stats information
- */
-#define SERIAL_COLLECT_STATS 0
-
-/**
  * @brief change to 0 and rebuild if you do not wish to include serial RX interrupt
  * some functionality will be missing.
  *
@@ -68,22 +63,6 @@
  * @brief 1 - STDOUT data will be sent by polling, 0 - interrupts
  */
 #define SERIAL_STDOUT_POLL 1
-
-/**
- * @brief RX ring buffer size if SERIAL_IMPLEMENT_RX_INT == 1
- *
- * For high speeds and very busy applications one may consider increasing the RX ring buffer size
- * This variable has any useful meaning only if SERIAL_IMPLEMENT_RX_INT == 1
- */
-#define SERIAL_RX_RING_SIZE 64
-
-/**
- * @brief TX ring buffer size if SERIAL_IMPLEMENT_TX_INT == 1
- *
- * For high speeds and very busy applications one may consider increasing the TX ring buffer size
- * This variable has any useful meaning only if SERIAL_IMPLEMENT_TX_INT == 1
- */
-#define SERIAL_TX_RING_SIZE 64
 
 // ============================ TIMERS/BEEPER =====================================
 

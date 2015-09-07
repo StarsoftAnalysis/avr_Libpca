@@ -35,42 +35,64 @@
  */
 
 
-#include "config.h"
-#include "common.h"
+#include <stdint.h>
 
 #include <avr/io.h>
 #include <util/atomic.h>
 
 
 /**
+ * @brief structure describing the memory location of gpio registers
+ */
+typedef struct _gpio_map {
+    /// PINX (pull-up control, input, toggle)
+    volatile uint8_t pin;
+
+    /// DDRX (data direction)
+    volatile uint8_t ddr;
+
+    /// PORTX (pull-up, IO)
+    volatile uint8_t port;
+} gpio_map;
+
+
+/**
  * @brief structure describing a single io line
  */
 typedef struct _gpio_pin {
-	volatile uint8_t *port;
+    /// gpio port map
+	volatile gpio_map * const gm;
+
+    /// pin (bit)
 	uint8_t pin;
 } gpio_pin;
 
 
 /**
- * @brief get pointer to DDR register from PORT register
+ * @brief finds a gpio_map pointer given the PORTX register
  *
- * @param __val pointer to PORT register
- *
- * @return pointer to DDR register
+ * @param __portx pointer to PORTX register
  */
-#define GET_DDRX_FROM_PORTX(__portx) \
-	(__portx - 1)
+#define GET_GPIO_MAP_FROM_PORT(__portx) \
+    ((volatile gpio_map *)(((volatile uint8_t *)__portx) - 2))
 
 
 /**
- * @brief get pointer to PIN register from PORT register
+ * @brief finds a gpio_map pointer given the PINX register
  *
- * @param __val pointer to PORT register
- *
- * @return pointer to PIN register
+ * @param __pinx pointer to PINX register
  */
-#define GET_PINX_FROM_PORTX(__portx) \
-	(__portx - 2)
+#define GET_GPIO_MAP_FROM_PIN(__pinx) \
+    ((volatile gpio_map *)__pinx)
+
+
+/**
+ * @brief finds a gpio_map pointer given the DDRX register
+ *
+ * @param __ddrx pointer to DDRX register
+ */
+#define GET_GPIO_MAP_FROM_DDR(__ddrx) \
+    ((volatile gpio_map *)(((volatile uint8_t *)__ddrx) - 1))
 
 
 /**
@@ -79,7 +101,7 @@ typedef struct _gpio_pin {
  * @param __val pointer to gpio_pin instance.
  */
 #define GPIO_CONFIGURE_AS_OUTPUT(__gpio) \
-	*(GET_DDRX_FROM_PORTX((__gpio)->port)) |= _BV((__gpio)->pin)
+	((__gpio)->gm->ddr) |= _BV((__gpio)->pin)
 
 
 /**
@@ -88,7 +110,7 @@ typedef struct _gpio_pin {
  * @param __val pointer to gpio_pin instance.
  */
 #define GPIO_CONFIGURE_AS_INPUT(__gpio) \
-	*(GET_DDRX_FROM_PORTX((__gpio)->port)) &= ~_BV((__gpio)->pin)
+	((__gpio)->gm->ddr) &= ~_BV((__gpio)->pin)
 
 
 /**
@@ -99,7 +121,7 @@ typedef struct _gpio_pin {
  * @return Zero if unset, non-zero value otherwise.
  */
 #define GPIO_GET(__gpio) \
-	(*(GET_PINX_FROM_PORTX((__gpio)->port)) & _BV((__gpio)->pin))
+	(((__gpio)->gm->pin) & _BV((__gpio)->pin))
 
 
 /**
@@ -109,7 +131,7 @@ typedef struct _gpio_pin {
  */
 #define GPIO_SET_LOW(__gpio) \
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { \
-		(*(__gpio)->port) &= ~_BV((__gpio)->pin); \
+        ((__gpio)->gm->port) &= ~_BV((__gpio)->pin); \
 	}
 
 
@@ -120,7 +142,7 @@ typedef struct _gpio_pin {
  */
 #define GPIO_SET_HIGH(__gpio) \
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { \
-		(*(__gpio)->port) |= _BV((__gpio)->pin); \
+        ((__gpio)->gm->port) |= _BV((__gpio)->pin); \
 	}
 
 
@@ -130,7 +152,7 @@ typedef struct _gpio_pin {
  * @param __val pointer to gpio_pin instance.
  */
 #define GPIO_TOGGLE(__gpio) \
-	*(GET_PINX_FROM_PORTX((__gpio)->port)) = _BV((__gpio)->pin)
+    ((__gpio)->gm->pin) |= _BV((__gpio)->pin)
 
 
 #endif /* end of include guard: GPIO_H_TUGJ3L7E */

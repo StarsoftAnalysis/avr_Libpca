@@ -1,5 +1,5 @@
-#ifndef __SERIAL_H__
-#define __SERIAL_H__
+#ifndef SERIAL_POLL_H_21W0FCAX
+#define SERIAL_POLL_H_21W0FCAX
 
 /* Copyright (C)
  * 2015 - Tomasz Wisniewski
@@ -20,7 +20,6 @@
  */
 
 
-#include "ring.h"
 #include "usart_map.h"
 #include "usart_stats.h"
 
@@ -29,33 +28,6 @@
 #include <stdint.h>
 
 
-/**
- * @brief General purpose USART descriptor
- */
-typedef struct _usart {
-    /// USART device port map pointer
-    volatile usart_map * const um;
 
 
-    /// ingress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_RX_RING_SIZE + sizeof(ring_buffer8)];
-    } rx;
-
-
-    /// egress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_TX_RING_SIZE + sizeof(ring_buffer8)];
-    } tx;
-
-
-#if SERIAL_COLLECT_STATS == 1
-    volatile usart_stats stats;
-#endif
-
-} usart;
-
-
-#endif /* __SERIAL_H__ */
+#endif /* end of include guard: SERIAL_POLL_H_21W0FCAX */
