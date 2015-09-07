@@ -151,19 +151,6 @@ typedef enum _e_return {
 
 
 /**
- * @brief exchange value between variables
- *
- * This implementation doesn't use a temporary variable
- *
- * @param __x first value
- * @param __y second value
- *
- */
-#define EXCHANGE(__x, __y) \
-	__x ^= __y; __y ^= __x; __x ^= __y
-
-
-/**
  * @brief converts binary value to BCD representation
  *
  * @param __val value to be converted
@@ -184,29 +171,6 @@ typedef enum _e_return {
 #define BIN2BCD(__val) \
 	(((__val / 10) << 4) + __val % 10)
 
-
-/**
- * @brief get pointer to DDR register from PORT register
- *
- * @param __val pointer to PORT register 
- *
- * @return pointer to DDR register
- */
-#define GET_DDRX_FROM_PORTX(__portx) \
-	(__portx - 1)	
-
-
-/**
- * @brief get pointer to PIN register from PORT register
- *
- * @param __val pointer to PORT register 
- *
- * @return pointer to PIN register
- */
-#define GET_PINX_FROM_PORTX(__portx) \
-	(__portx - 2)	
-
-
 // ================================================================================
 
 
@@ -226,9 +190,6 @@ uint16_t common_memory_left();
  * @return absolute unsigned value
  */
 uint32_t common_abs(int32_t a_value);
-
-
-#define common_zero_mem(__ptr, __len) while (__len--) (*(char *)(__ptr)) = 0x00
 
 
 /**

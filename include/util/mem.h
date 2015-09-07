@@ -1,8 +1,8 @@
-#ifndef RING_H_FDIQOKDH
-#define RING_H_FDIQOKDH
+#ifndef MEM_H_MEXYVT5O
+#define MEM_H_MEXYVT5O
 
 /* Copyright (C)
- * 2014 - Tomasz Wisniewski
+ * 2015 - Tomasz Wisniewski
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -20,33 +20,30 @@
  */
 
 
-#include <stdint.h>
-#include <stdlib.h>
-
-
-#define DECLARE_RING(__type) \
-    typedef struct { \
-        volatile __type head; \
-        volatile __type tail; \
-        volatile uint8_t ring[]; \
-    }
+/**
+ * @brief exchange value between variables
+ *
+ * This implementation doesn't use a temporary variable
+ *
+ * @param __x first value
+ * @param __y second value
+ *
+ */
+#define UTIL_MEM_BYTE_SWAP(__x, __y) \
+	__x ^= __y; __y ^= __x; __x ^= __y
 
 
 /**
- * @brief 8 bit ring buffer.
+ * @brief small macro to zero a memory buffer
  *
- * Defines a ring buffer of bytes type, which has internal indexes of uint8_t type.
- */
-DECLARE_RING(uint8_t) ring_buffer8;
-
-
-/**
- * @brief 16 ring buffer.
+ * It produces less code than memset()
  *
- * Defines a ring buffer of bytes type, which has internal indexes of uint16_t type.
+ * @param __ptr pointer to buffer
+ * @param __len mutable counter initialized to the size of the buffer
+ *
  */
-DECLARE_RING(uint16_t) ring_buffer16;
+#define UTIL_MEM_ZERO(__ptr, __len) while (__len--) \
+    (*(char *)(__ptr)) = 0x00
 
 
-#endif /* end of include guard: RING_H_FDIQOKDH */
-
+#endif /* end of include guard: MEM_H_MEXYVT5O */

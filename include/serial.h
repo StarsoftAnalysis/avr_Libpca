@@ -21,21 +21,68 @@
 
 
 #include "ring.h"
-#include "usart_map.h"
-#include "usart_stats.h"
+#include "_usart_map.h"
+#include "_usart_stats.h"
 
 #include "config/serial.h"
 
 #include <stdint.h>
 
 
+typedef enum _usart_parity {
+    USART_PARITY_DISABLED = 0x00,
+    USART_PARITY_EVEN = 0x02,
+    USART_PARITY_ODD = 0x03,
+} usart_parity;
+
+
+typedef enum _usart_databits {
+    USART_DATABITS5 = 0x00,
+    USART_DATABITS6 = 0x01,
+    USART_DATABITS7 = 0x02,
+    USART_DATABITS8 = 0x03,
+    USART_DATABITS9 = 0x07,
+} usart_databits;
+
+
+typedef enum _usart_stopbits {
+    USART_STOPBITS0 = 0x00,
+    USART_STOPBITS1 = 0x01,
+} usart_stopbits;
+
+
+typedef struct _usart_settings {
+    uint32_t baudrate;
+    uint8_t is_rx_enable;
+    uint8_t is_tx_enable;
+    uint8_t parity;
+    uint8_t stopbits;
+    uint8_t databits;
+    uint8_t is_synchronous;
+} usart_settings;
+
+
+#define USART_DEFAULT_ASYNC(__baud) \
+    { \
+        .baudrate = (__baud), \
+        .is_rx_enabled = 0x01, \
+        .is_tx_enabled = 0x01, \
+        .parity = USART_PARITY_DISABLED, \
+        .stopbits = USART_STOPBITS1, \
+        .databits = USART_DATABITS8, \
+        .is_synchronous = 0x00 \
+    }
+
+
 /**
  * @brief General purpose USART descriptor
  */
-typedef struct _usart {
+typedef struct _usart_ctx {
     /// USART device port map pointer
     volatile usart_map * const um;
 
+    /// which usart ? (zero for devices with only one usart)
+    uint8_t usart_dev_no;
 
     /// ingress ring buffer
     union {
@@ -55,7 +102,10 @@ typedef struct _usart {
     volatile usart_stats stats;
 #endif
 
-} usart;
+} usart_ctx;
+
+
+void serial_init(uint8_t usart_dev_no, usart_settings* settings, volatile usart_ctx *ctx);
 
 
 #endif /* __SERIAL_H__ */
