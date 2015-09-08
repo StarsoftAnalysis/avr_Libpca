@@ -183,9 +183,6 @@ e_return serial_init(uint32_t a_speed) {
 	// baud value
 	uint16_t baud_value = 0x00;
 
-	// enable power
-	power_usart0_enable();	
-
 	// double mode disabled
 	UCSR0A = 0x00;
 
@@ -198,100 +195,11 @@ e_return serial_init(uint32_t a_speed) {
 			UCSR0A |= _BV(U2X0);
 			baud_value = 832;
 			break;
-
-		case E_BAUD_4800:
-			baud_value = 207;
-			break;
-
-		case E_BAUD_9600:
-			baud_value = 103;
-			break;
-
-		case E_BAUD_14400:
-			baud_value = 68;
-			break;
-
-		case E_BAUD_19200:
-			baud_value = 51;
-			break;
-
-		case E_BAUD_28800:
-			baud_value = 34;
-			break;
-
-		case E_BAUD_38400:
-			baud_value = 25;
-			break;
-
-		case E_BAUD_57600:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 34;
-			break;
-
-		case E_BAUD_76800:
-			baud_value = 12;
-			break;
-
-		case E_BAUD_115200:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 16;
-			break;
-#if SERIAL_SUPPORT_HIGH_SPEEDS == 1
-		case E_BAUD_230400:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 8;
-			break;
-
-		case E_BAUD_250000:
-			baud_value = 3;
-			break;
-
-		case E_BAUD_500000:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 3;
-			break;
-
-		case E_BAUD_1000000:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 1;
-			break;
 #endif
-
-#endif
-
-		default:
-			// manual calculation
-			{
-				int8_t use_double = 1;
-
-				do {
-					if (use_double) {
-						UCSR0A |= _BV(U2X0);
-						baud_value = (F_CPU / 4 / a_speed - 1) / 2;
-					} else {
-						UCSR0A = 0x00;
-						baud_value = (F_CPU / 8 / a_speed - 1) / 2;
-					}
-
-				} while (baud_value > 4095 && use_double--);
-			}
-			break;
 	} // switch
 
 	UBRR0H = (baud_value >> 8) & 0xff;
 	UBRR0L = baud_value & 0xff;
-
-#if SERIAL_IMPLEMENT_RX_INT == 1
-	// clear the ring, reuse the bad_value variable
-	baud_value = sizeof(g_rx_buff);
-	common_zero_mem(&g_rx_buff, baud_value);
-#endif
-
-#if SERIAL_IMPLEMENT_TX_INT == 1
-	// reuse the bad_value variable 
-	baud_value = sizeof(g_tx_buff);
-	common_zero_mem(&g_tx_buff, baud_value);
-#endif
 
 	// asynchronous, 8N1 mode
 	UCSR0C |= 0x06;

@@ -65,7 +65,7 @@ volatile void* usart_base_get(uint8_t n) {
 }
 
 
-void serial_init(uint8_t usart_dev_no,
+void usart_init(uint8_t usart_dev_no,
         usart_settings* settings,
         volatile usart_ctx *ctx) {
 
