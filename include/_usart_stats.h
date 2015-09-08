@@ -35,7 +35,18 @@ typedef struct _usart_stats {
 
 	/// number of bytes received with frame error indicator
 	volatile uint32_t frame_error;
+
+    /// number of bytes with parity error
+    volatile uint32_t parity_error;
 } usart_stats;
+
+
+/**
+ * @brief resets the stats
+ *
+ * @param stats pointer to stats structure
+ */
+void usart_stats_reset(usart_stats *stats);
 
 
 #endif /* end of include guard: USART_STATS_H_JTB3WXE4 */

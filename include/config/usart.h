@@ -1,5 +1,5 @@
-#ifndef SERIAL_POLL_H_21W0FCAX
-#define SERIAL_POLL_H_21W0FCAX
+#ifndef USART_H_GPKUWB0J
+#define USART_H_GPKUWB0J
 
 /* Copyright (C)
  * 2015 - Tomasz Wisniewski
@@ -20,14 +20,28 @@
  */
 
 
-#include "usart_map.h"
-#include "usart_stats.h"
-
-#include "config/serial.h"
-
-#include <stdint.h>
+/**
+ * @brief change to 0 and rebuild if you do not need stats information
+ */
+#define USART_COLLECT_STATS 0
 
 
+/**
+ * @brief RX ring buffer size if USART_IMPLEMENT_RX_INT == 1
+ *
+ * For high speeds and very busy applications one may consider increasing the RX ring buffer size
+ * This variable has any useful meaning only if USART_IMPLEMENT_RX_INT == 1
+ */
+#define USART_RX_RING_SIZE 64
 
 
-#endif /* end of include guard: SERIAL_POLL_H_21W0FCAX */
+/**
+ * @brief TX ring buffer size if USART_IMPLEMENT_TX_INT == 1
+ *
+ * For high speeds and very busy applications one may consider increasing the TX ring buffer size
+ * This variable has any useful meaning only if USART_IMPLEMENT_TX_INT == 1
+ */
+#define USART_TX_RING_SIZE 64
+
+
+#endif /* end of include guard: USART_H_GPKUWB0J */

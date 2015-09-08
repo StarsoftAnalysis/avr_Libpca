@@ -30,7 +30,9 @@ typedef struct _usart_map {
     volatile uint8_t ucsra;
     volatile uint8_t ucsrb;
     volatile uint8_t ucsrc;
-    uint8_t __reserved1;
+
+    /// atmega 32U4
+    volatile uint8_t ucsrd;
 
     union {
         volatile uint16_t ubrr;

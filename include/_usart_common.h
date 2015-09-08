@@ -1,5 +1,5 @@
-#ifndef __SERIAL_H__
-#define __SERIAL_H__
+#ifndef USART_COMMON_H_SLKXUAGC
+#define USART_COMMON_H_SLKXUAGC
 
 /* Copyright (C)
  * 2015 - Tomasz Wisniewski
@@ -20,15 +20,11 @@
  */
 
 
-#include "ring.h"
-#include "_usart_map.h"
-#include "_usart_stats.h"
-
-#include "config/serial.h"
-
 #include <stdint.h>
 
-
+/**
+ * @brief USART parity settings (UPMn bits)
+ */
 typedef enum _usart_parity {
     USART_PARITY_DISABLED = 0x00,
     USART_PARITY_EVEN = 0x02,
@@ -36,6 +32,9 @@ typedef enum _usart_parity {
 } usart_parity;
 
 
+/**
+ * @brief Frame's data bits
+ */
 typedef enum _usart_databits {
     USART_DATABITS5 = 0x00,
     USART_DATABITS6 = 0x01,
@@ -45,10 +44,21 @@ typedef enum _usart_databits {
 } usart_databits;
 
 
+/**
+ * @brief Frame's stop bits
+ */
 typedef enum _usart_stopbits {
     USART_STOPBITS0 = 0x00,
     USART_STOPBITS1 = 0x01,
 } usart_stopbits;
+
+
+typedef enum usart_mode {
+    USART_ASYNC_NORMAL = 0x00,
+    USART_ASYNC_DOUBLE = 0x01,
+    USART_ASYNC_ANY = 0x02,
+    USART_SYNC = 0x03,
+} usart_mode;
 
 
 typedef struct _usart_settings {
@@ -58,7 +68,7 @@ typedef struct _usart_settings {
     uint8_t parity;
     uint8_t stopbits;
     uint8_t databits;
-    uint8_t is_synchronous;
+    uint8_t mode;
 } usart_settings;
 
 
@@ -70,42 +80,34 @@ typedef struct _usart_settings {
         .parity = USART_PARITY_DISABLED, \
         .stopbits = USART_STOPBITS1, \
         .databits = USART_DATABITS8, \
-        .is_synchronous = 0x00 \
+        .mode = USART_ASYNC_ANY \
     }
 
 
 /**
- * @brief General purpose USART descriptor
+ * @brief calculates the value to be written to UBRRX register
+ *
+ * UBRRX configures the UART's clock frequeny
+ *
+ * @param clock system clock speed (F_CPU macro can be used)
+ * @param baud requested baud-rate
+ * @param mode usart_mode
+ *
+ * @return calculated UBRRX
  */
-typedef struct _usart_ctx {
-    /// USART device port map pointer
-    volatile usart_map * const um;
-
-    /// which usart ? (zero for devices with only one usart)
-    uint8_t usart_dev_no;
-
-    /// ingress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_RX_RING_SIZE + sizeof(ring_buffer8)];
-    } rx;
+uint16_t usart_common_calculate_ubrr(uint32_t clock, uint32_t baud, uint8_t mode);
 
 
-    /// egress ring buffer
-    union {
-        volatile ring_buffer8 ring;
-        volatile uint8_t _raw[SERIAL_TX_RING_SIZE + sizeof(ring_buffer8)];
-    } tx;
+/**
+ * @brief calculates the baudrate from given system clock and UBRR value
+ *
+ * @param clock system clock speed (F_CPU macro can be used)
+ * @param ubrr value from UBRR register
+ * @param mode usart_mode
+ *
+ * @return calculated baudrate
+ */
+uint32_t usart_common_calculate_baud(uint32_t clock, uint16_t ubrr, uint8_t mode);
 
 
-#if SERIAL_COLLECT_STATS == 1
-    volatile usart_stats stats;
-#endif
-
-} usart_ctx;
-
-
-void serial_init(uint8_t usart_dev_no, usart_settings* settings, volatile usart_ctx *ctx);
-
-
-#endif /* __SERIAL_H__ */
+#endif /* end of include guard: USART_COMMON_H_SLKXUAGC */
