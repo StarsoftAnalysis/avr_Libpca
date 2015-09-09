@@ -135,14 +135,15 @@ static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s
         uint32_t dbrate =
             usart_common_calculate_baud(F_CPU, smode_ubrr, USART_ASYNC_DOUBLE);
 
-        mode = util_abs(s->baudrate - sbrate) < util_abs(s->baudrate - dbrate);
-        brate  = mode ? smode_ubrr : dmode_ubrr;
+        mode = util_abs(s->baudrate - sbrate) > util_abs(s->baudrate - dbrate);
+        brate  = mode ? dmode_ubrr : smode_ubrr;
     }
     else {
         brate = usart_common_calculate_ubrr(F_CPU, s->baudrate, mode);
     }
 
     ctx->um->ubrr = brate;
+    ctx->um->ucsra |= _BV(U2X0);
     // set the double mode bit if needed
 }
 
