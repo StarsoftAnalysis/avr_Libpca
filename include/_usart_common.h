@@ -53,6 +53,9 @@ typedef enum _usart_stopbits {
 } usart_stopbits;
 
 
+/**
+ * @brief usart operational mode
+ */
 typedef enum usart_mode {
     USART_ASYNC_NORMAL = 0x00,
     USART_ASYNC_DOUBLE = 0x01,
@@ -61,6 +64,10 @@ typedef enum usart_mode {
 } usart_mode;
 
 
+/**
+ * @brief This struct aggregates most important USART settings which can be
+ * configured with usart_init call.
+ */
 typedef struct _usart_settings {
     uint32_t baudrate;
     uint8_t is_rx_enable;
@@ -70,6 +77,27 @@ typedef struct _usart_settings {
     uint8_t databits;
     uint8_t mode;
 } usart_settings;
+
+
+/**
+ * @brief crude way to count number of USART's available for given device.
+ */
+typedef enum _usart_dev_enumeration {
+#ifdef UCSR0A
+    USART_DEV_USART0,
+#endif
+#ifdef UCSR1A
+    USART_DEV_USART1,
+#endif
+#ifdef UCSR2A
+    USART_DEV_USART2,
+#endif
+#ifdef UCSR3A
+    USART_DEV_USART3,
+#endif
+
+    USART_DEV_MAX_USARTS
+} usart_dev_enumeration;
 
 
 #define USART_DEFAULT_ASYNC(__baud) \

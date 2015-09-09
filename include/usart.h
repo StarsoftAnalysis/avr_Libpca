@@ -61,7 +61,22 @@ typedef struct _usart_ctx {
 } usart_ctx;
 
 
-void usart_init(uint8_t usart_dev_no, usart_settings* settings, volatile usart_ctx *ctx);
+/**
+ * @brief initializes the USART contexts. Must be called before any other USART
+ * operations.
+ */
+void usart_init(void);
+
+
+/**
+ * @brief Configures and enables selected USART device.
+ *
+ * @param usart_dev_no USART device id (starting from zero)
+ * @param settings (USART settings)
+ *
+ * @return USART Ctx
+ */
+volatile usart_ctx* usart_configure(uint8_t usart_dev_no, usart_settings* settings);
 
 
 #endif /* __USART_H__ */

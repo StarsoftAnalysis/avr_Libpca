@@ -28,7 +28,7 @@ set(CMAKE_C_FLAGS ${CFLAGS})
 set(PCA_INCLUDE_SUFFIX "include/pca-${PCA_VERSION}")
 set(PCA_LIBRARY_NAME "pca-${PCA_VERSION_DETAILED}")
 
-file(GLOB SOURCES src/*.c)
+file(GLOB_RECURSE SOURCES src/*.c)
 add_library(${PCA_LIBRARY_NAME} STATIC ${SOURCES})
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 

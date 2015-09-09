@@ -51,15 +51,6 @@ uint16_t common_memory_left () {
 }
 
 
-uint32_t common_abs(int32_t a_value) {
-	int32_t temp = 0x00;
-
-	temp = a_value >> 31;
-	a_value ^= temp;
-	a_value -= temp;
-	
-	return a_value;
-}
 
 
 uint32_t common_swap(uint32_t a_value) {

@@ -3,7 +3,10 @@
 #include "util/mem.h"
 #include "util/util.h"
 
+#include <avr/interrupt.h>
 #include <avr/power.h>
+
+#include <stdint.h>
 
 
 /// rx & tx rings must be a power of two
@@ -65,21 +68,77 @@ volatile void* usart_base_get(uint8_t n) {
 }
 
 
-void usart_init(uint8_t usart_dev_no,
-        usart_settings* settings,
-        volatile usart_ctx *ctx) {
+/**
+ * @brief global USART device context. Needed for interrupts.
+ */
+static volatile usart_ctx g_usart[USART_DEV_MAX_USARTS];
 
-    uint8_t buff_size = sizeof(ctx->rx);
-    UTIL_MEM_ZERO(&ctx->rx, buff_size);
 
-    buff_size = sizeof(ctx->tx);
-    UTIL_MEM_ZERO(&ctx->tx, buff_size);
+/* ========================================================================== */
+
+static void _usart_rings_reset(uint8_t n);
+static uint16_t _usart_calculate_ubrr(uint32_t baudrate, uint8_t mode);
+
+/* ========================================================================== */
+
+
+void usart_init() {
+    uint8_t n = 0;
+
+    while (n < USART_DEV_MAX_USARTS) {
+        _usart_rings_reset(n);
 
 #if USART_COLLECT_STATS == 1
-    usart_stats_reset(&ctx->stats);
+        usart_stats_reset(&g_usart[n].stats);
 #endif
 
-    ctx->usart_dev_no = usart_dev_no;
-    ctx->um = usart_base_get(usart_dev_no);
-    usart_enable(usart_dev_no);
+        g_usart[n].usart_dev_no = n;
+        g_usart[n].um = usart_base_get(n);
+    }
 }
+
+
+volatile usart_ctx* usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
+    _usart_rings_reset(usart_dev_no);
+    usart_enable(usart_dev_no);
+
+    g_usart[usart_dev_no].um->ubrr =
+        _usart_calculate_ubrr(settings->baudrate, settings->mode);
+
+    sei();
+
+    return &g_usart[usart_dev_no];
+}
+
+/* ========================================================================== */
+
+static void _usart_rings_reset(uint8_t n) {
+    size_t rx_size = sizeof(g_usart[0].rx);
+    size_t tx_size = sizeof(g_usart[0].tx);
+    UTIL_MEM_ZERO(&g_usart[n].rx, rx_size);
+    UTIL_MEM_ZERO(&g_usart[n].tx, tx_size);
+}
+
+
+static uint16_t _usart_calculate_ubrr(uint32_t baudrate, uint8_t mode) {
+    if (USART_ASYNC_ANY == mode) {
+        uint16_t smode_ubrr =
+            usart_common_calculate_ubrr(F_CPU, baudrate, USART_ASYNC_NORMAL);
+
+        uint16_t dmode_ubrr =
+            usart_common_calculate_ubrr(F_CPU, baudrate, USART_ASYNC_DOUBLE);
+
+        uint32_t sbrate =
+            usart_common_calculate_baud(F_CPU, smode_ubrr, USART_ASYNC_NORMAL);
+
+        uint32_t dbrate =
+            usart_common_calculate_baud(F_CPU, smode_ubrr, USART_ASYNC_DOUBLE);
+
+        return (util_abs(baudrate - sbrate) < util_abs(baudrate - dbrate) ?
+                smode_ubrr : dmode_ubrr);
+    }
+
+    return usart_common_calculate_ubrr(F_CPU, baudrate, mode);
+}
+
+/* ========================================================================== */
