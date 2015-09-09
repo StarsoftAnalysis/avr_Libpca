@@ -74,9 +74,8 @@ void usart_init(void);
  * @param usart_dev_no USART device id (starting from zero)
  * @param settings (USART settings)
  *
- * @return USART Ctx
  */
-volatile usart_ctx* usart_configure(uint8_t usart_dev_no, usart_settings* settings);
+void usart_configure(uint8_t usart_dev_no, usart_settings* settings);
 
 
 #endif /* __USART_H__ */

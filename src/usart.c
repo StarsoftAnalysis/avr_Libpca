@@ -77,7 +77,7 @@ static volatile usart_ctx g_usart[USART_DEV_MAX_USARTS];
 /* ========================================================================== */
 
 static void _usart_rings_reset(uint8_t n);
-static uint16_t _usart_calculate_ubrr(uint32_t baudrate, uint8_t mode);
+static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s);
 
 /* ========================================================================== */
 
@@ -98,19 +98,17 @@ void usart_init() {
 }
 
 
-volatile usart_ctx* usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
+void usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
     _usart_rings_reset(usart_dev_no);
     usart_enable(usart_dev_no);
-
-    g_usart[usart_dev_no].um->ubrr =
-        _usart_calculate_ubrr(settings->baudrate, settings->mode);
+    _usart_configure_baudrate(&g_usart[usart_dev_no], settings);
 
     sei();
-
-    return &g_usart[usart_dev_no];
 }
 
+
 /* ========================================================================== */
+
 
 static void _usart_rings_reset(uint8_t n) {
     size_t rx_size = sizeof(g_usart[0].rx);
@@ -120,13 +118,16 @@ static void _usart_rings_reset(uint8_t n) {
 }
 
 
-static uint16_t _usart_calculate_ubrr(uint32_t baudrate, uint8_t mode) {
-    if (USART_ASYNC_ANY == mode) {
+static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s) {
+    uint16_t brate = 0;
+    uint8_t mode = s->mode;
+
+    if (USART_ASYNC_ANY == s->mode) {
         uint16_t smode_ubrr =
-            usart_common_calculate_ubrr(F_CPU, baudrate, USART_ASYNC_NORMAL);
+            usart_common_calculate_ubrr(F_CPU, s->baudrate, USART_ASYNC_NORMAL);
 
         uint16_t dmode_ubrr =
-            usart_common_calculate_ubrr(F_CPU, baudrate, USART_ASYNC_DOUBLE);
+            usart_common_calculate_ubrr(F_CPU, s->baudrate, USART_ASYNC_DOUBLE);
 
         uint32_t sbrate =
             usart_common_calculate_baud(F_CPU, smode_ubrr, USART_ASYNC_NORMAL);
@@ -134,11 +135,16 @@ static uint16_t _usart_calculate_ubrr(uint32_t baudrate, uint8_t mode) {
         uint32_t dbrate =
             usart_common_calculate_baud(F_CPU, smode_ubrr, USART_ASYNC_DOUBLE);
 
-        return (util_abs(baudrate - sbrate) < util_abs(baudrate - dbrate) ?
-                smode_ubrr : dmode_ubrr);
+        mode = util_abs(s->baudrate - sbrate) < util_abs(s->baudrate - dbrate);
+        brate  = mode ? smode_ubrr : dmode_ubrr;
+    }
+    else {
+        brate = usart_common_calculate_ubrr(F_CPU, s->baudrate, mode);
     }
 
-    return usart_common_calculate_ubrr(F_CPU, baudrate, mode);
+    ctx->um->ubrr = brate;
+    // set the double mode bit if needed
 }
+
 
 /* ========================================================================== */
