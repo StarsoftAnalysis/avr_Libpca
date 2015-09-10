@@ -143,8 +143,22 @@ static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s
     }
 
     ctx->um->ubrr = brate;
-    ctx->um->ucsra |= _BV(U2X0);
-    // set the double mode bit if needed
+
+    // taking an assumption here that UCSRA has the same layout for every
+    // UART (which might not always be the case)
+    switch(mode) {
+        case USART_ASYNC_NORMAL:
+            ctx->um->ucsra &= ~_BV(U2X0);
+            break;
+
+        case USART_ASYNC_DOUBLE:
+            ctx->um->ucsra |= _BV(U2X0);
+            break;
+
+        // usart in SPI mode
+        case USART_SYNC:
+            break;
+    }
 }
 
 
