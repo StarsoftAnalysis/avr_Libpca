@@ -1,3 +1,10 @@
+/**
+ * @file serial.c
+ *
+ * @brief Serial API Implementation
+ *
+ */
+
 #include "usart.h"
 
 #include "util/mem.h"
@@ -78,6 +85,45 @@ static volatile usart_ctx g_usart[USART_DEV_MAX_USARTS];
 
 static void _usart_rings_reset(uint8_t n);
 static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s);
+static void _usart_configure_ff(volatile usart_ctx* ctx, usart_settings* s);
+
+
+/**
+ * @brief receive USART interrupt
+ *
+ * Data is received in this ISR and placed in the RX ring buffer - if there is still space available.
+ *  If statistics support is enabled those will be updated in this ISR as well
+ *
+ */
+static void _usart_rx_isr(uint8_t n);
+
+/* ========================================================================== */
+
+
+#ifdef USART0_RXC_vect
+#define USART_ISR_RX0 USART0_RXC_vect
+#elif defined(USART0_RX_vect)
+#define USART_ISR_RX0 USART0_RX_vect
+#elif defined(USART_RXC_vect)
+#define USART_ISR_RX0 USART_RXC_vect
+#elif defined(USART_RX_vect)
+#define USART_ISR_RX0 USART_RX_vect
+#elif defined(UART0_RX_vect)
+#define USART_ISR_RX0 UART0_RX_vect
+#elif defined(UART_RX_vect)
+#define USART_ISR_RX0 UART_RX_vect
+#endif
+
+#ifdef USART_ISR_RX0
+ISR(USART_ISR_RX0) {
+    _usart_rx_isr(0);
+}
+#endif
+
+
+ISR(USART_UDRE_vect) {
+}
+
 
 /* ========================================================================== */
 
@@ -99,9 +145,35 @@ void usart_init() {
 
 
 void usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
+    uint16_t ubrr = 0;
+    cli();
+
     _usart_rings_reset(usart_dev_no);
     usart_enable(usart_dev_no);
+
     _usart_configure_baudrate(&g_usart[usart_dev_no], settings);
+    _usart_configure_ff(&g_usart[usart_dev_no], settings);
+
+    // set ubrr to zero in synchronous mode
+    if (USART_SYNC == settings->mode) {
+        ubrr = g_usart[usart_dev_no].um->ubrr;
+        g_usart[usart_dev_no].um->ubrr = 0;
+        DDRD |= _BV(PORTD4);
+    }
+
+    // restore the required settings
+    if (USART_SYNC == settings->mode) {
+        g_usart[usart_dev_no].um->ubrr = ubrr;
+    }
+
+	// disable transmission complete interrupt
+    g_usart[usart_dev_no].um->ucsrb |= ~_BV(TXCIE0);
+
+    // enable receive interrupt
+    g_usart[usart_dev_no].um->ucsrb |= _BV(RXCIE0);
+
+    USART_COMMON_TX_SET(&g_usart[usart_dev_no], settings->is_tx_enable);
+    USART_COMMON_RX_SET(&g_usart[usart_dev_no], settings->is_rx_enable);
 
     sei();
 }
@@ -159,6 +231,68 @@ static void _usart_configure_baudrate(volatile usart_ctx* ctx, usart_settings* s
         case USART_SYNC:
             break;
     }
+}
+
+
+static void _usart_configure_ff(volatile usart_ctx* ctx, usart_settings* s) {
+    if (USART_SYNC == s->mode) {
+        ctx->um->ucsrc =
+            (s->mode << UMSEL00) |
+            (s->ff.spi.dataorder << UDORD0) |
+            (s->ff.spi.spimode & 0x03);
+    }
+    else {
+        // usart in async mode
+        ctx->um->ucsrc =
+            (s->mode << UMSEL00) |
+            ((s->ff.usart.parity & 0x03) << UPM00) |
+            ((s->ff.usart.stopbits & 0x01) << USBS0) |
+            ((s->ff.usart.databits & 0x07) << UCSZ00);
+    }
+}
+
+
+/* ========================================================================== */
+
+
+static void _usart_rx_isr(uint8_t n) {
+    volatile usart_ctx *ctx = &g_usart[n];
+
+	// UCSR0A must be read before UDR0 !!!
+	if (bit_is_clear(ctx->um->ucsra, FE0)) {
+
+		/// must read the data in order to clear the interrupt flag
+		volatile uint8_t data = ctx->um->udr;
+
+		/// calculate the next available ring buffer data bucket index
+		volatile uint8_t next =
+		   	((ctx->rx.ring.head + 1) & (USART_RX_RING_SIZE - 1));
+
+		/// do not overflow the buffer
+		if (next != ctx->rx.ring.tail) {
+            ctx->rx.ring.ring[ctx->rx.ring.head] = data;
+            ctx->rx.ring.head = next;
+#if USART_COLLECT_STATS == 1
+            ctx->stats.ok++;
+#endif
+		}
+		else {
+#if USART_COLLECT_STATS == 1
+			/// increase the dropped counter
+            ctx->stats.dropped++;
+#endif
+		}
+	}
+	else {
+		/// must read the data in order to clear the interrupt flag
+		volatile uint8_t data UNUSED = UDR0;
+
+#if USART_COLLECT_STATS == 1
+		/// increase the frame error counter
+        ctx->stats.frame_error++;
+#endif
+	}
+
 }
 
 

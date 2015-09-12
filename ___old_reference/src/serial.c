@@ -1,105 +1,9 @@
-/* Copyright (C) 
- * 2013 - Tomasz Wisniewski
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * 
- */
-
-
-/**
- * @file serial.c 
- *
- * @brief Serial API Implementation
- *
- */
-
 #include <avr/io.h>
 #include <avr/power.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
 
 #include <serial.h>
-
-
-/* ================================================================================ */
-
-#if SERIAL_IMPLEMENT_RX_INT == 1
-
-/**
- * @brief serial RX Ring Buffer definition
- */
-static volatile t_buffer g_rx_buff;
-#endif
-
-#if SERIAL_IMPLEMENT_TX_INT == 1
-
-/**
- * @brief serial TX Ring Buffer definition
- */
-static volatile t_buffer g_tx_buff;
-#endif
-
-/* ================================================================================ */
-
-#if SERIAL_IMPLEMENT_RX_INT == 1
-
-/**
- * @brief receive USART interrupt
- *
- * Data is received in this ISR and placed in the RX ring buffer - if there is still space available.
- *  If statistics support is enabled those will be updated in this ISR as well
- *
- * @param USART_RX_vect
- */
-ISR(USART_RX_vect, ISR_BLOCK) {
-
-	// no frame error
-	// UCSR0A must be read before UDR0 !!!
-	if (bit_is_clear(UCSR0A, FE0)) {
-		/// must read the data in order to clear the interrupt flag
-		volatile unsigned char data = UDR0;
-
-		/// calculate the next available ring buffer data bucket index
-		volatile unsigned char next =
-		   	((g_rx_buff.u.r.head + 1) % SERIAL_RX_RING_SIZE);
-
-		/// do not overflow the buffer
-		if (next != g_rx_buff.u.r.tail) {
-			g_rx_buff.u.r.ring[g_rx_buff.u.r.head] = data;
-			g_rx_buff.u.r.head = next;			
-#if SERIAL_COLLECT_STATS == 1
-			g_rx_buff.stats.ok++;
-#endif
-		}
-		else {
-#if SERIAL_COLLECT_STATS == 1
-			/// increase the dropped counter
-			g_rx_buff.stats.dropped++;
-#endif
-		}
-	}
-	else {
-		/// must read the data in order to clear the interrupt flag
-		volatile unsigned char data __attribute__((unused)) = UDR0;
-
-#if SERIAL_COLLECT_STATS == 1
-		/// increase the frame error counter
-		g_rx_buff.stats.frame_error++;
-#endif
-	}
-}
-#endif
 
 
 #if SERIAL_IMPLEMENT_TX_INT == 1
@@ -167,8 +71,6 @@ static int _serial_getc(FILE *stream) {
 	serial_poll_getc(&c);
 #elif SERIAL_STDIN_POLL == 0	
 	while (!serial_getc(&c));
-#else
-#error SERIAL_STDIN_POLL must be either 0 (interrupt driven) or 1 (polling)
 #endif
 
 	return (char)c;
@@ -179,61 +81,8 @@ static int _serial_getc(FILE *stream) {
 
 
 e_return serial_init(uint32_t a_speed) {
-	
-	// baud value
-	uint16_t baud_value = 0x00;
-
-	// double mode disabled
-	UCSR0A = 0x00;
-
-	// choose predefined value or calculate
-	switch (a_speed) { 
-
-// hard coded defines if the clock is equal to 16 MHz		
-#if F_CPU == 16000000UL
-		case E_BAUD_2400:
-			UCSR0A |= _BV(U2X0);
-			baud_value = 832;
-			break;
-#endif
-	} // switch
-
-	UBRR0H = (baud_value >> 8) & 0xff;
-	UBRR0L = baud_value & 0xff;
-
-	// asynchronous, 8N1 mode
-	UCSR0C |= 0x06;
-	
-	// rx/tx enable
-	UCSR0B |= _BV(RXEN0);
-	UCSR0B |= _BV(TXEN0);
-
 	serial_flush();
 	return RET_OK;
-}
-
-
-void serial_install_interrupts(e_serial_flags a_flags) {
-
-	// disable transmission complete interrupt
-	UCSR0B &= ~_BV(TXCIE0);
-
-#if SERIAL_IMPLEMENT_RX_INT == 1
-	if (a_flags & E_FLAGS_SERIAL_RX_INTERRUPT) {
-		// enable receive interrupt
-		UCSR0B |= _BV(RXCIE0);
-	}
-#endif
-
-#if SERIAL_IMPLEMENT_TX_INT == 1
-	if (a_flags & E_FLAGS_SERIAL_TX_INTERRUPT) {
-		// do nothing, the interrupt will be enable whenever the characters are
-		// queued to send
-	}
-#endif
-
-	// enable global interrupts
-	sei();
 }
 
 

@@ -72,9 +72,26 @@ typedef struct _usart_settings {
     uint32_t baudrate;
     uint8_t is_rx_enable;
     uint8_t is_tx_enable;
-    uint8_t parity;
-    uint8_t stopbits;
-    uint8_t databits;
+
+    // frame format settings
+    union {
+        // usart in asynchronous mode
+        struct {
+            uint8_t stopbits;
+            uint8_t databits;
+            uint8_t parity;
+        } usart;
+
+        // usart in SPI mode
+        struct {
+            // 0 - MSB first
+            uint8_t dataorder;
+
+            // refer to spi_mode enum
+            uint8_t spimode;
+        } spi;
+    } ff;
+
     uint8_t mode;
 } usart_settings;
 
@@ -109,6 +126,36 @@ typedef enum _usart_dev_enumeration {
         .stopbits = USART_STOPBITS1, \
         .databits = USART_DATABITS8, \
         .mode = USART_ASYNC_ANY \
+    }
+
+
+/**
+ * @brief Enable or disable the transmitter
+ *
+ * @param __ctx usart ctx
+ * @param 0/1 - disable/enable
+ */
+#define USART_COMMON_TX_SET(__ctx, __val) \
+    if (__val) { \
+        (__ctx)->um->ucsrb |= _BV(TXEN0); \
+    } \
+    else { \
+        (__ctx)->um->ucsrb &= ~_BV(TXEN0); \
+    }
+
+
+/**
+ * @brief Enable or disable the receiver
+ *
+ * @param __ctx usart ctx
+ * @param 0/1 - disable/enable
+ */
+#define USART_COMMON_RX_SET(__ctx, __val) \
+    if (__val) { \
+        (__ctx)->um->ucsrb |= _BV(RXEN0); \
+    } \
+    else { \
+        (__ctx)->um->ucsrb &= ~_BV(RXEN0); \
     }
 
 
