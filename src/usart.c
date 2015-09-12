@@ -113,10 +113,43 @@ static void _usart_rx_isr(uint8_t n);
 #elif defined(UART_RX_vect)
 #define USART_ISR_RX0 UART_RX_vect
 #endif
-
 #ifdef USART_ISR_RX0
 ISR(USART_ISR_RX0) {
     _usart_rx_isr(0);
+}
+#endif
+
+
+#ifdef USART1_RXC_vect
+#define USART_ISR_RX1 USART1_RXC_vect
+#elif defined(USART1_RX_vect)
+#define USART_ISR_RX1 USART1_RX_vect
+#elif defined(UART0_RX_vect)
+#define USART_ISR_RX1 UART1_RX_vect
+#endif
+#ifdef USART_ISR_RX1
+ISR(USART_ISR_RX1) {
+    _usart_rx_isr(1);
+}
+#endif
+
+
+#ifdef USART2_RX_vect
+#define USART_ISR_RX2 USART2_RX_vect
+#endif
+#ifdef USART_ISR_RX2
+ISR(USART_ISR_RX2) {
+    _usart_rx_isr(2);
+}
+#endif
+
+
+#ifdef USART3_RX_vect
+#define USART_ISR_RX3 USART3_RX_vect
+#endif
+#ifdef USART_ISR_RX3
+ISR(USART_ISR_RX3) {
+    _usart_rx_isr(3);
 }
 #endif
 
