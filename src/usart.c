@@ -229,32 +229,70 @@ volatile usart_ctx* usart_ctx_get(uint8_t usart_dev_no) {
 }
 
 
-/*
- * usart_get() {
- * }
- *
- *
- * usart_put() {
- * }
- */
+uint32_t usart_get(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait) {
+    usart_ctx *ctx = &g_usart[usart_dev_no];
+    uint32_t read = 0;
 
-
-uint8_t usart_getc(uint8_t usart_dev_no, void *data) {
-    if (g_usart[usart_dev_no].rx.ring.head == g_usart[usart_dev_no].rx.ring.tail)
+    if (ctx->rx.ring.head == ctx->rx.ring.tail)
         return 0;
 
-    *(char *)data = g_usart[usart_dev_no].rx.ring.ring[ g_usart[usart_dev_no].rx.ring.tail ];
-    g_usart[usart_dev_no].rx.ring.tail =
-        (g_usart[usart_dev_no].rx.ring.tail + 1) & (USART_RX_RING_SIZE - 1);
+    while (read < size) {
 
-    return 1;
+        while (serial_available() && (read < size)) {
+            ((char *)data)[read] = ctx->rx.ring.ring[ctx->rx.ring.tail];
+            ctx->rx.ring.tail = (ctx->rx.ring.tail + 1) & (USART_RX_RING_SIZE - 1);
+            read++;
+        }
+
+        if (!wait) {
+            break;
+        }
+    }
+
+    return read;
 }
 
 
-/*
- * usart_putc() {
- * }
- */
+uint32_t usart_put(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait) {
+    usart_ctx *ctx = &g_usart[usart_dev_no];
+    uint32_t sent = 0;
+
+    while (size--) {
+        uint8_t next = ( ctx->tx.ring.head + 1 ) & (USART_TX_RING_SIZE - 1);
+
+        if (next != ctx->tx.ring.tail) {
+            ctx->tx.ring.ring[ctx->tx.ring.head] *(char *)data;
+            ctx->tx.ring.head = next;
+        }
+        else {
+            if (wait) {
+                // Ring is full and there's still data to be sent.
+            }
+            else {
+                // Don't need to wait
+                break;
+            }
+        }
+
+        (char *)data++;
+        sent++;
+    }
+
+    // enable data register empty interrupt - this will initiate the transmitter
+    ctx->um->ucsrb |= _BV(UDRIE0);
+
+    return sent;
+}
+
+
+uint8_t usart_getc(uint8_t usart_dev_no, void *data) {
+    return usart_get(usart_dev_no, data, 1, 0);
+}
+
+
+usart_putc(uint8_t usart_dev_no, uint8_t data) {
+    return usart_put(usart_dev_no, &data, 1, 0);
+}
 
 
 int usart_stream_getc(FILE *stream UNUSED) {
@@ -267,12 +305,14 @@ int usart_stream_putc(char c, FILE *stream) {
 
 usart_peek(uint8_t usart_dev_no, void *data, uint8_t size) {
     uint8_t available = usart_available(usart_dev_no);
+    usart_ctx *ctx = &g_usart[usart_dev_no];
+
     if (available > size)
         available = size;
 
     for (uint8_t i = 0; i < available; i++) {
         ((uint8_t *)data)[i] =
-            g_usart[usart_dev_no].rx.ring.ring[ ( g_usart[usart_dev_no].rx.ring.tail + i ) & (USART_RX_RING_SIZE - 1) ];
+            ctx->rx.ring.ring[ ( ctx->rx.ring.tail + i ) & (USART_RX_RING_SIZE - 1) ];
     }
 
     return available;

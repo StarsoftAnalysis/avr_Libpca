@@ -87,34 +87,6 @@ void serial_install_stdio() {
 }
 
 
-#if SERIAL_IMPLEMENT_RX_INT == 1
-
-unsigned int serial_recv(void *a_data, unsigned int a_size, unsigned char a_waitall) {
-	unsigned int read = 0x00;
-
-	if (!a_waitall && g_rx_buff.u.r.head == g_rx_buff.u.r.tail) {
-		return 0;
-	}
-
-	while ( read < a_size ) {
-
-		while (serial_available() && (read < a_size)) 
-		{
-			((unsigned char *)a_data)[read] = g_rx_buff.u.r.ring[ g_rx_buff.u.r.tail ];
-			g_rx_buff.u.r.tail = (g_rx_buff.u.r.tail + 1) % SERIAL_RX_RING_SIZE;
-			read++;
-		}
-
-		if (!a_waitall)
-			break;
-	}
-	
-	return read;
-}
-
-#endif
-
-
 #if SERIAL_IMPLEMENT_TX_INT == 1
 unsigned char serial_send(void *a_data, unsigned int a_size, unsigned char a_waitall) {
 	uint8_t n = 0x00;
@@ -159,30 +131,6 @@ unsigned char serial_send(void *a_data, unsigned int a_size, unsigned char a_wai
 }
 
 
-unsigned char serial_sendc(unsigned char a_data) {
-
-	uint8_t n = 0x00;
-	uint8_t next =
-		((g_tx_buff.u.r.head + 1) % SERIAL_TX_RING_SIZE);
-
-	/// do not overflow the buffer
-	if (next != g_tx_buff.u.r.tail) {
-		g_tx_buff.u.r.ring[g_tx_buff.u.r.head] = a_data;
-		g_tx_buff.u.r.head = next;
-		n = 1;
-
-		// enable data register empty interrupt
-		UCSR0B |= _BV(UDRIE0);
-	}
-#if SERIAL_COLLECT_STATS == 1
-	else {
-		g_tx_buff.stats.dropped++;
-	}
-#endif
-
-	return n;
-}
-#endif
 
 
 
