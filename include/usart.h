@@ -78,4 +78,21 @@ void usart_init(void);
 void usart_configure(uint8_t usart_dev_no, usart_settings* settings);
 
 
+/**
+ * @brief Flushes the transmission buffer and clears the RX/TX rings.
+ *
+ * @param usart_dev_no device number
+ */
+void usart_flush(uint8_t usart_dev_no);
+
+
+/**
+ * @brief Retrieves the device context
+ *
+ * @param usart_dev_no device number
+ *
+ * @return device context
+ */
+volatile usart_ctx* usart_ctx_get(uint8_t usart_dev_no);
+
 #endif /* __USART_H__ */

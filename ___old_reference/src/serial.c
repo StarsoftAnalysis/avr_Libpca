@@ -49,8 +49,6 @@ static int _serial_putc(char c, FILE *stream) {
 	serial_poll_sendc(c);
 #elif SERIAL_STDOUT_POLL == 0
 	while (!serial_sendc(c));
-#else
-#error SERIAL_STDOUT_POLL must be either 0 (interrupt driven) or 1 (polling)
 #endif
 
 	return 0;
@@ -80,12 +78,6 @@ static int _serial_getc(FILE *stream) {
 /* ================================================================================ */
 
 
-e_return serial_init(uint32_t a_speed) {
-	serial_flush();
-	return RET_OK;
-}
-
-
 void serial_install_stdio() {
 	static FILE uart_stdout = FDEV_SETUP_STREAM(_serial_putc, NULL, _FDEV_SETUP_WRITE);
 	static FILE uart_stdin = FDEV_SETUP_STREAM(NULL, _serial_getc, _FDEV_SETUP_READ);
@@ -96,24 +88,6 @@ void serial_install_stdio() {
 
 
 #if SERIAL_IMPLEMENT_RX_INT == 1
-inline unsigned char serial_available() {
-	return (SERIAL_RX_RING_SIZE + g_rx_buff.u.r.head - g_rx_buff.u.r.tail) % SERIAL_RX_RING_SIZE;
-}
-
-
-unsigned char serial_peek(void *a_data, unsigned char a_size) {
-	unsigned char read = serial_available();
-	if (read > a_size)
-		read = a_size;
-
-	for (unsigned char i = 0; i<read; i++) {
-		((unsigned char *)a_data)[i] =
-			g_rx_buff.u.r.ring[ (g_rx_buff.u.r.tail + i) % SERIAL_RX_RING_SIZE ];
-	}
-
-	return read;
-}
-
 
 unsigned int serial_recv(void *a_data, unsigned int a_size, unsigned char a_waitall) {
 	unsigned int read = 0x00;
@@ -138,39 +112,7 @@ unsigned int serial_recv(void *a_data, unsigned int a_size, unsigned char a_wait
 	return read;
 }
 
-
-unsigned char serial_getc(unsigned char *a_data) {
-	
-	if (g_rx_buff.u.r.head == g_rx_buff.u.r.tail)
-		return 0;
-
-	*a_data = g_rx_buff.u.r.ring[g_rx_buff.u.r.tail];
-	g_rx_buff.u.r.tail = (g_rx_buff.u.r.tail + 1) % SERIAL_RX_RING_SIZE;
-	return 1;
-}
 #endif
-
-
-unsigned char serial_poll_recv(unsigned char *a_data, unsigned int a_size) {
-	unsigned int cnt = a_size;
-
-	while (a_size) {
-		/* Wait for data to be received */
-		while ( !(UCSR0A & (1<<RXC0)) );
-
-		/* Get and return received data from buffer */
-		*a_data = UDR0;
-		a_data++;
-		a_size--;
-	}
-
-	return cnt;
-}
-
-
-unsigned char serial_poll_getc(unsigned char *a_data) {
-	return serial_poll_recv(a_data, 1);
-}
 
 
 #if SERIAL_IMPLEMENT_TX_INT == 1
@@ -243,6 +185,23 @@ unsigned char serial_sendc(unsigned char a_data) {
 #endif
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 unsigned int serial_poll_send(void *data, unsigned int a_size) {
 	unsigned int i = 0x00;
 	while (i < a_size) {
@@ -261,28 +220,25 @@ unsigned int serial_poll_sendc(unsigned char a_char) {
 	return serial_poll_send((void *)&a_char, 1);
 }
 
+unsigned char serial_poll_recv(unsigned char *a_data, unsigned int a_size) {
+	unsigned int cnt = a_size;
 
-void serial_flush() {
-	unsigned char dummy __attribute__((unused)) = 0x00;
+	while (a_size) {
+		/* Wait for data to be received */
+		while ( !(UCSR0A & (1<<RXC0)) );
 
-#if SERIAL_IMPLEMENT_RX_INT == 1
-	g_rx_buff.u.r.tail = g_rx_buff.u.r.head = 0x00;
-#endif
+		/* Get and return received data from buffer */
+		*a_data = UDR0;
+		a_data++;
+		a_size--;
+	}
 
-	// flush the input fifo
-	while ( UCSR0A & (1<<RXC0) ) dummy = UDR0;
+	return cnt;
 }
 
 
-#if SERIAL_IMPLEMENT_RX_INT == 1
-volatile t_buffer* serial_get_rx_state() {
-	return &g_rx_buff;
+unsigned char serial_poll_getc(unsigned char *a_data) {
+	return serial_poll_recv(a_data, 1);
 }
-#endif
 
 
-#if SERIAL_IMPLEMENT_TX_INT == 1
-volatile t_buffer* serial_get_tx_state() {
-	return &g_tx_buff;
-}
-#endif

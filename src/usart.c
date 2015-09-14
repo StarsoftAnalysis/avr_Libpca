@@ -212,6 +212,80 @@ void usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
 }
 
 
+void usart_flush(uint8_t usart_dev_no) {
+    uint8_t placeholder UNUSED = 0x00;
+    usart_ctx *ctx = &g_usart[usart_dev_no];
+
+    ctx->rx.ring.head = ctx->rx.ring.tail = 0x00;
+    ctx->tx.ring.head = ctx->tx.ring.tail = 0x00;
+
+	// flush the input fifo
+    while (ctx>um->ucsra & _BV(RXC0)) placeholder = ctx->um->udr;
+}
+
+
+volatile usart_ctx* usart_ctx_get(uint8_t usart_dev_no) {
+    return &g_usart[usart_dev_no];
+}
+
+
+/*
+ * usart_get() {
+ * }
+ *
+ *
+ * usart_put() {
+ * }
+ */
+
+
+uint8_t usart_getc(uint8_t usart_dev_no, void *data) {
+    if (g_usart[usart_dev_no].rx.ring.head == g_usart[usart_dev_no].rx.ring.tail)
+        return 0;
+
+    *(char *)data = g_usart[usart_dev_no].rx.ring.ring[ g_usart[usart_dev_no].rx.ring.tail ];
+    g_usart[usart_dev_no].rx.ring.tail =
+        (g_usart[usart_dev_no].rx.ring.tail + 1) & (USART_RX_RING_SIZE - 1);
+
+    return 1;
+}
+
+
+/*
+ * usart_putc() {
+ * }
+ */
+
+
+int usart_stream_getc(FILE *stream UNUSED) {
+}
+
+
+int usart_stream_putc(char c, FILE *stream) {
+}
+
+
+usart_peek(uint8_t usart_dev_no, void *data, uint8_t size) {
+    uint8_t available = usart_available(usart_dev_no);
+    if (available > size)
+        available = size;
+
+    for (uint8_t i = 0; i < available; i++) {
+        ((uint8_t *)data)[i] =
+            g_usart[usart_dev_no].rx.ring.ring[ ( g_usart[usart_dev_no].rx.ring.tail + i ) & (USART_RX_RING_SIZE - 1) ];
+    }
+
+    return available;
+}
+
+
+uint8_t usart_available(uint8_t usart_dev_no) {
+    return (USART_RX_RING_SIZE +
+            g_usart[usart_dev_no].rx.ring.head -
+            g_usart[usart_dev_no].rx.ring.tail) & (USART_RX_RING_SIZE - 1);
+}
+
+
 /* ========================================================================== */
 
 
