@@ -14,6 +14,7 @@
 #include <avr/power.h>
 
 #include <stdint.h>
+#include <stdio.h>
 
 
 /// rx & tx rings must be a power of two
@@ -214,13 +215,13 @@ void usart_configure(uint8_t usart_dev_no, usart_settings* settings) {
 
 void usart_flush(uint8_t usart_dev_no) {
     uint8_t placeholder UNUSED = 0x00;
-    usart_ctx *ctx = &g_usart[usart_dev_no];
+    volatile usart_ctx *ctx = &g_usart[usart_dev_no];
 
     ctx->rx.ring.head = ctx->rx.ring.tail = 0x00;
     ctx->tx.ring.head = ctx->tx.ring.tail = 0x00;
 
 	// flush the input fifo
-    while (ctx>um->ucsra & _BV(RXC0)) placeholder = ctx->um->udr;
+    while (ctx->um->ucsra & _BV(RXC0)) placeholder = ctx->um->udr;
 }
 
 
@@ -230,7 +231,7 @@ volatile usart_ctx* usart_ctx_get(uint8_t usart_dev_no) {
 
 
 uint32_t usart_get(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait) {
-    usart_ctx *ctx = &g_usart[usart_dev_no];
+    volatile usart_ctx *ctx = &g_usart[usart_dev_no];
     uint32_t read = 0;
 
     if (ctx->rx.ring.head == ctx->rx.ring.tail)
@@ -238,7 +239,7 @@ uint32_t usart_get(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait
 
     while (read < size) {
 
-        while (serial_available() && (read < size)) {
+        while (usart_available(usart_dev_no) && (read < size)) {
             ((char *)data)[read] = ctx->rx.ring.ring[ctx->rx.ring.tail];
             ctx->rx.ring.tail = (ctx->rx.ring.tail + 1) & (USART_RX_RING_SIZE - 1);
             read++;
@@ -254,14 +255,14 @@ uint32_t usart_get(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait
 
 
 uint32_t usart_put(uint8_t usart_dev_no, void *data, uint32_t size, uint8_t wait) {
-    usart_ctx *ctx = &g_usart[usart_dev_no];
+    volatile usart_ctx *ctx = &g_usart[usart_dev_no];
     uint32_t sent = 0;
 
     while (size--) {
         uint8_t next = ( ctx->tx.ring.head + 1 ) & (USART_TX_RING_SIZE - 1);
 
         if (next != ctx->tx.ring.tail) {
-            ctx->tx.ring.ring[ctx->tx.ring.head] *(char *)data;
+            ctx->tx.ring.ring[ctx->tx.ring.head] = *(char *)data;
             ctx->tx.ring.head = next;
         }
         else {
@@ -290,22 +291,24 @@ uint8_t usart_getc(uint8_t usart_dev_no, void *data) {
 }
 
 
-usart_putc(uint8_t usart_dev_no, uint8_t data) {
+uint32_t usart_putc(uint8_t usart_dev_no, uint8_t data) {
     return usart_put(usart_dev_no, &data, 1, 0);
 }
 
 
 int usart_stream_getc(FILE *stream UNUSED) {
+    return 0;
 }
 
 
 int usart_stream_putc(char c, FILE *stream) {
+    return 0;
 }
 
 
-usart_peek(uint8_t usart_dev_no, void *data, uint8_t size) {
+uint8_t usart_peek(uint8_t usart_dev_no, void *data, uint8_t size) {
     uint8_t available = usart_available(usart_dev_no);
-    usart_ctx *ctx = &g_usart[usart_dev_no];
+    volatile usart_ctx *ctx = &g_usart[usart_dev_no];
 
     if (available > size)
         available = size;

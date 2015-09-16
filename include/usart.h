@@ -95,4 +95,7 @@ void usart_flush(uint8_t usart_dev_no);
  */
 volatile usart_ctx* usart_ctx_get(uint8_t usart_dev_no);
 
+
+uint8_t usart_available(uint8_t usart_dev_no);
+
 #endif /* __USART_H__ */
